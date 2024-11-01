@@ -1,92 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>お問い合わせページ</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="ここにサイト説明を入れます">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            line-height: 1.6; /* 行間を調整 */
-        }
-
-        #container {
-            max-width: 800px; /* 最大幅を設定 */
-            margin: 0 auto; /* 中央に配置 */
-            padding: 20px; /* パディングを追加 */
-        }
-
-        header {
-            text-align: left; /* ヘッダーを左寄せ */
-        }
-
-        nav {
-            background-color: #f8f8f8; /* メニューの背景色 */
-            padding: 10px; /* パディングを追加 */
-            margin-bottom: 20px; /* 下部マージン */
-        }
-
-        nav ul {
-            list-style-type: none; /* リストのスタイルを削除 */
-            padding: 0; /* パディングを削除 */
-        }
-
-        nav ul li {
-            display: inline; /* 横並びにする */
-            margin-right: 15px; /* リスト項目の間隔 */
-        }
-
-        h2 {
-            margin-top: 0; /* 上部のマージンを削除 */
-        }
-
-        form {
-            margin-top: 20px; /* フォームの上部マージン */
-        }
-
-        label {
-            display: block; /* ラベルをブロック要素に */
-            margin: 10px 0 5px; /* 上下のマージン */
-        }
-
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            width: 100%; /* 幅を100%に */
-            padding: 10px; /* パディングを追加 */
-            margin-bottom: 15px; /* 下部マージン */
-            border: 1px solid #ccc; /* ボーダー */
-            border-radius: 4px; /* 角を丸める */
-        }
-
-        input[type="submit"] {
-            background-color: #4CAF50; /* ボタンの背景色 */
-            color: white; /* ボタンの文字色 */
-            border: none; /* ボーダーを削除 */
-            padding: 10px 15px; /* パディングを追加 */
-            cursor: pointer; /* カーソルをポインターに */
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049; /* ホバー時の色 */
-        }
-
-        footer {
-            text-align: left; /* フッターを左寄せ */
-            margin-top: 20px; /* 上部のマージン */
-        }
-
-        footer ul {
-            list-style-type: none; /* リストのスタイルを削除 */
-            padding: 0; /* パディングを削除 */
-        }
-
-        footer ul li {
-            margin-bottom: 5px; /* フッターメニューの間隔 */
-        }
-    </style>
+<meta charset="UTF-8">
+<title>お問い合わせページ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ここにサイト説明を入れます">
+<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -94,59 +13,103 @@
 <div id="container">
 
 <header>
-    <h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="SAMPLE COMPANY"></a></h1>
 
-    <!--メニュー-->
-    <nav id="menubar">
-        <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="company.html">COMPANY</a></li>
-            <li><a href="">SERVICE</a>
-                <ul>
-                    <li><a href="service.html">メニューメニュー</a></li>
-                    <li><a href="service.html">メニュー</a></li>
-                    <li><a href="service.html">メニュー</a></li>
-                    <li><a href="service.html">メニュー</a></li>
-                </ul>
-            </li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">CONTACT</a></li>
-            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-        </ul>
-    </nav>
+<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="SAMPLE COMPANY"></a></h1>
+
+<!--メニュー-->
+<nav id="menubar">
+<ul>
+<li><a href="index.html">HOME</a></li>
+<li><a href="company.html">COMPANY</a></li>
+<li><a href="">SERVICE</a>
+	<ul>
+	<li><a href="service.html">メニューメニュー</a></li>
+	<li><a href="service.html">メニュー</a></li>
+	<li><a href="service.html">メニュー</a></li>
+	<li><a href="service.html">メニュー</a></li>
+	</ul>
+</li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="contact.html">CONTACT</a></li>
+<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+</ul>
+</nav>
+
+<!--開閉ボタン（ハンバーガーアイコン）-->
+<div id="menubar_hdr">
+<span></span><span></span><span></span>
+</div>
+
 </header>
 
 <main>
-    <section>
-        <h2>お問い合わせ</h2>
-        <form action="submit.php" method="post">
-            <label for="name">名前:</label>
-            <input type="text" id="name" name="name" required>
 
-            <label for="email">メールアドレス:</label>
-            <input type="email" id="email" name="email" required>
+<section>
 
-            <label for="message">メッセージ:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
+<h2>お問い合わせ</h2>
 
-            <input type="submit" value="送信">
-        </form>
-    </section>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせフォーム</title>
+</head>
+<body>
+    
+    <form action="submit.php" method="post">
+        <label for="name">名前:</label><br>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+        
+        <label for="email">メールアドレス:</label><br>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+        
+        <label for="message">メッセージ:</label><br>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        <br><br>
+        
+        <input type="submit" value="送信">
+    </form>
+</body>
+</html>
+
+
+
+
+<table class="ta1">
+
+<tr>
+
+
+</td>
+</tr>
+</table>
+
+
+
+
+
+</section>
+
 </main>
 
 <footer>
-    <ul id="footermenu">
-        <li><a href="#">フッターメニュー</a></li>
-        <li><a href="#">フッターメニュー</a></li>
-        <li><a href="#">フッターメニュー</a></li>
-        <li><a href="#">フッターメニュー</a></li>
-        <li><a href="#">フッターメニュー</a></li>
-    </ul>
-</footer>
 
-</div>
+<ul id="footermenu">
+<li><a href="#">フッターメニュー</a></li>
+<li><a href="#">フッターメニュー</a></li>
+<li><a href="#">フッターメニュー</a></li>
+<li><a href="#">フッターメニュー</a></li>
+<li><a href="#">フッターメニュー</a></li>
+</ul>
+
+
+
+
 
 </body>
 </html>
