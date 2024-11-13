@@ -18,102 +18,123 @@
 
 <!--メニュー-->
 <nav id="menubar">
-<ul>
-<li><a href="index.html">HOME</a></li>
-<li><a href="company.html">COMPANY</a></li>
-<li><a href="">SERVICE</a>
-	<ul>
-        <li><a href="index.html">トップ</a></li>
-        <li><a href="gaiyou.html">ミニチュアハウスとは何か</a></li>
-        <li><a href="mokuteki.html">利用方法・目的</a></li>
-        <li><a href="teian.html">教育提案</a></li>
-        <li><a href="osirase.company.html">お知らせ、経緯など</a></li>
-        <li><a href="otoiawase.company.html">お問い合わせ</a></li>
-        <li><a href="subete.company.html">全て(仮)</a></li>
-	</ul>
-</li>
-<li><a href="faq.html">FAQ</a></li>
-<li><a href="contact.html">CONTACT</a></li>
-<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-</ul>
-</nav>
+    <ul>
+    <li><a href="index.html">トップ</a></li>
+    <li><a href="gaiyou.html">ミニチュアハウスとは何か</a></li>
+    <li><a href="mokuteki.html">目的・アピールポイント</a></li>
+    <li><a href="teian.html">教育提案</a></li>
+    <li><a href="osirase.company.html">お知らせ、経緯など</a></li>
+    <li><a href="otoiawase.company.html">お問い合わせ</a></li>
+    <li><a href="subete.company.html">関連技術紹介</a></li>
+    </ul>
+    </nav>
 
 <!--開閉ボタン（ハンバーガーアイコン）-->
 <div id="menubar_hdr">
-<span></span><span></span><span></span>
-</div>
+	<span></span><span></span><span></span>
+	</div>
+	
+	</header>
+	
+	<main>
 
-</header>
-
-<main>
-
-<section>
-
-<h2>お問い合わせ</h2>
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お問い合わせフォーム</title>
-</head>
-<body>
-    
-    <form action="submit.php" method="post">
-        <label for="name">名前:</label><br>
-        <input type="text" id="name" name="name" required>
-        <br><br>
+        <section>
         
-        <label for="email">メールアドレス:</label><br>
-        <input type="email" id="email" name="email" required>
-        <br><br>
+        <h2>お問い合わせ</h2>
         
-        <label for="message">メッセージ:</label><br>
-        <textarea id="message" name="message" rows="4" required></textarea>
-        <br><br>
+        <!DOCTYPE html>
+        <html lang="ja">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>お問い合わせフォーム</title>
+        </head>
+        <body>
+            
+            <form action="submit.php" method="post">
+                <label for="name">名前:</label><br>
+                <input type="text" id="name" name="name" required>
+                <br><br>
+                
+                <label for="email">メールアドレス:</label><br>
+                <input type="email" id="email" name="email" required>
+                <br><br>
+
+                
+                <th class="contact-item">お問い合わせ内容</th>
+                <br>
+                <td class="contact-body">
+                  <select name="職業" class="form-select">
+                    <option>選択してください</option>
+                    <option>購入について</option>
+                    <option>IoTミニチュアハウスについて</option>
+                    <option>その他</option>
+                  </select>
+
+                
+                 <br><br>
+                
+                <label for="message">メッセージ:</label><br>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <br><br>
+                
+                <input type="submit" value="送信">
+            </form>
+        </body>
+        </html>
         
-        <input type="submit" value="送信">
-    </form>
-</body>
-</html>
+        
+        
+        
+        <table class="ta1">
+        
+        <tr>
+        
+        
+        </td>
+        </tr>
+        </table>
+        
+        
+        
+        
+        
+        </section>
+        
+        </main>
+	
 
-
-
-
-<table class="ta1">
-
-<tr>
-
-
-</td>
-</tr>
-</table>
-
-
-
-
-
-</section>
-
-</main>
-
-<footer>
-
-<ul id="footermenu">
-<li><a href="#">フッターメニュー</a></li>
-<li><a href="#">フッターメニュー</a></li>
-<li><a href="#">フッターメニュー</a></li>
-<li><a href="#">フッターメニュー</a></li>
-<li><a href="#">フッターメニュー</a></li>
-</ul>
-
-
-
-
-
-</body>
-</html>
-
+	
+	<footer>
+	
+	<ul id="footermenu">
+	<li><a href="#">フッターメニュー</a></li>
+	<li><a href="#">フッターメニュー</a></li>
+	<li><a href="#">フッターメニュー</a></li>
+	<li><a href="#">フッターメニュー</a></li>
+	<li><a href="#">フッターメニュー</a></li>
+	</ul>
+	
+	<small>Copyright&copy; <a href="index.html">SAMPLE COMPANY</a> All Rights Reserved.</small>
+	<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+	
+	</footer>
+	
+	</div>
+	<!--/#container-->
+	
+	<!--jQueryの読み込み-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+	<!--パララックス（inview）-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+	<script src="js/jquery.inview_set.js"></script>
+	
+	<!--このテンプレート専用のスクリプト-->
+	<script src="js/main.js"></script>
+	
+	<!--ページの上部へ戻るボタン-->
+	<div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
+	
+	</body>
+	</html>
