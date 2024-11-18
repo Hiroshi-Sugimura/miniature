@@ -658,6 +658,37 @@ p.btn {margin: 0;}
 }
 
 
+/*トップ画像とキャッチコピーの設定
+---------------------------------------------------------------------------*/
+.top-section {
+  position: relative;
+  text-align: center;
+  color: white; /* テキストを白色に */
+}
+
+.top-image {
+  width: 100%; /* 画面幅にフィット */
+  height: auto;
+}
+
+.catch-text {
+  position: absolute;
+  top: 50%; /* 縦中央に配置 */
+  left: 50%; /* 横中央に配置 */
+  transform: translate(-50%, -50%); /* 中央揃え */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* テキストに影をつけて視認性向上 */
+}
+
+.catch-text h1 {
+  font-size: 3rem; /* キャッチコピーの大きさを調整 */
+  margin: 0;
+}
+
+.catch-text p {
+  font-size: 1.5rem; /* サブキャッチコピーの大きさを調整 */
+  margin: 0.5rem 0 0;
+}
+
 
 
 
