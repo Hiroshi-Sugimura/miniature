@@ -39,8 +39,8 @@ html,body {
 body {
 	font-family: 'BIZ UDPGothic', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
 	-webkit-text-size-adjust: none;
-	background: #fff;	/*背景色*/
-	color: #555;		/*全体の文字色*/
+	background: #2f2f30;	/*背景色*/
+	color: #ccc;		/*全体の文字色*/
 	line-height: 2;		/*行間*/
 	overflow-x: hidden;
 }
@@ -285,7 +285,7 @@ main h2 .uline {
 main h2 .uline::before {
 	content: "";position: absolute;bottom: 0px;left: 0px;width: 100%;
 	height: 3px;	/*ラインの高さ。上の「border-bottom」と「bottom」の３ヶ所の数字部分を合わせる*/
-	background: #111;			/*アニメーション時のラインの色*/
+	background: #666;			/*アニメーション時のラインの色*/
 	transition: 1s 0.5s;		/*1sはアニメーションの実行時間は1秒。0.5秒遅れてスタートする指定。*/
 	transform: scaleX(0);		/*幅。最初は0にして見えなくしておく。*/
 	transform-origin: left top;	/*線の出現起点が左からになるように。中央からの出現がよければこの１行削除。*/
@@ -525,7 +525,7 @@ p.btn {margin: 0;}
 	display: inline-block;text-decoration: none;border: none;
 	font-size: 1em;
 	box-shadow: 2px 2px 5px rgba(0,0,0,0.2);	/*ボックスの影。右へ、下へ、ぼかし幅の順。0,0,0は黒の事で0.2は色が20%出た状態。*/
-	background: linear-gradient(150deg, #ff0e0e, #770000);/*背景グラデーション。#logoと合わせています。*/
+	background: linear-gradient(150deg, #9933ff, #770000);/*背景グラデーション。#logoと合わせています。*/
 	letter-spacing: 0.1em;	/*文字間隔を少し広くする指定*/
 	color: #fff;			/*文字色*/
 	transition: 0.3s;		/*hoverまでにかける時間。0.3秒。*/
@@ -583,7 +583,7 @@ p.btn {margin: 0;}
 
 
 /*背景色パターン
----------------------------------------------------------------------------*/
+---------------------------------------------------------------------------
 .bg1 {
 	background: #eee;
 }
@@ -605,6 +605,71 @@ p.btn {margin: 0;}
 	width: 60px;		/*幅*/
 	line-height: 60px;	/*高さ*/
 	border-radius: 50%;	/*円形にする*/
+}
+/*トップ画像とキャッチコピーの設定
+---------------------------------------------------------------------------*/
+.top-section {
+  position: relative;
+  text-align: center;
+  color: white; /* テキストを白色に */
+}
+
+.top-image {
+  width: 100%; /* 画面幅にフィット */
+  height: 540px;
+}
+
+.catch-text {
+  position: absolute;
+  top: 50%; /* 縦中央に配置 */
+  left: 50%; /* 横中央に配置 */
+  transform: translate(-50%, -50%); /* 中央揃え */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* テキストに影をつけて視認性向上 */
+}
+
+.catch-text h1 {
+  font-size: 3rem; /* キャッチコピーの大きさを調整 */
+  margin: 0;
+}
+
+.catch-text p {
+  font-size: 1.5rem; /* サブキャッチコピーの大きさを調整 */
+  margin: 0.5rem 0 0;
+}
+
+/* 全体の調整 */
+.top-section {
+  position: relative;
+  text-align: center; /* キャッチコピーを中央寄せ */
+}
+
+/* 画像のサイズ調整 */
+.top-image {
+  width: 100%; /* 画面幅にフィット */
+ /* max-width: 1200px; /* 最大幅を指定 */
+  height: auto; /* 縦横比を保つ */
+  display: block; /* 画像を中央揃え */
+  margin: 0 auto; /* 余白を均等に */
+}
+
+/* キャッチコピーのスタイル */
+.catch-text {
+  position: absolute;
+  top: 50%; /* 画像の50%の高さに配置 */
+  left: 50%; /* 水平方向に中央寄せ */
+  transform: translate(-50%, -50%); /* 完全に中央揃え */
+  color: white; /* テキストを白色に */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* テキストに影を付けて見やすくする */
+}
+
+.catch-text h1 {
+  font-size: 2.5rem; /* 見出しのフォントサイズ */
+  margin: 0;
+}
+
+.catch-text p {
+  font-size: 1.5rem; /* サブテキストのフォントサイズ */
+  margin: 0;
 }
 
 
@@ -658,37 +723,11 @@ p.btn {margin: 0;}
 }
 
 
-/*トップ画像とキャッチコピーの設定
+
+/*---------------------------------------------------------------------------
+キャッチコピーの表示についての設定
 ---------------------------------------------------------------------------*/
-.top-section {
-  position: relative;
-  text-align: center;
-  color: white; /* テキストを白色に */
-}
-
-.top-image {
-  width: 100%; /* 画面幅にフィット */
-  height: auto;
-}
-
-.catch-text {
-  position: absolute;
-  top: 50%; /* 縦中央に配置 */
-  left: 50%; /* 横中央に配置 */
-  transform: translate(-50%, -50%); /* 中央揃え */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* テキストに影をつけて視認性向上 */
-}
-
-.catch-text h1 {
-  font-size: 3rem; /* キャッチコピーの大きさを調整 */
-  margin: 0;
-}
-
-.catch-text p {
-  font-size: 1.5rem; /* サブキャッチコピーの大きさを調整 */
-  margin: 0.5rem 0 0;
-}
-
+/* PC用のスタイル */
 
 
 
