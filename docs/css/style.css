@@ -40,7 +40,7 @@ body {
 	font-family: 'BIZ UDPGothic', "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;	/*フォント種類*/
 	-webkit-text-size-adjust: none;
 	background: #2f2f30;	/*背景色*/
-	color: #ccc;		/*全体の文字色*/
+	color: #ffffff;		/*全体の文字色*/
 	line-height: 2;		/*行間*/
 	overflow-x: hidden;
 }
@@ -580,6 +580,11 @@ p.btn {margin: 0;}
 	width: 30%;			/*幅*/
 	text-align: left;	/*左よせにする*/
 }
+
+.ta1 {
+	color: #000000		/*全体の文字色*/
+}
+
 
 
 /*背景色パターン
