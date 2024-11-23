@@ -349,9 +349,77 @@ footer .pr {display: block;}
 }
 
 
+
+/*トップ画像とキャッチコピーの設定
+---------------------------------------------------------------------------*/
+.top-section {
+  position: relative;
+  text-align: center;
+  color: white; /* テキストを白色に */
+}
+
+.top-image {
+  width: 100%; /* 画面幅にフィット */
+  height: 540px;
+}
+
+.catch-text {
+  position: absolute;
+  top: 50%; /* 縦中央に配置 */
+  left: 50%; /* 横中央に配置 */
+  transform: translate(-50%, -50%); /* 中央揃え */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* テキストに影をつけて視認性向上 */
+}
+
+.catch-text h1 {
+  font-size: 3rem; /* キャッチコピーの大きさを調整 */
+  margin: 0;
+}
+
+.catch-text p {
+  font-size: 1.5rem; /* サブキャッチコピーの大きさを調整 */
+  margin: 0.5rem 0 0;
+}
+
+/* 全体の調整 */
+.top-section {
+  position: relative;
+  text-align: center; /* キャッチコピーを中央寄せ */
+}
+
+/* 画像のサイズ調整 */
+.top-image {
+  width: 100%; /* 画面幅にフィット */
+  max-width: 1200px; /* 最大幅を指定 */
+  height: auto; /* 縦横比を保つ */
+  display: block; /* 画像を中央揃え */
+  margin: 0 auto; /* 余白を均等に */
+}
+
+/* キャッチコピーのスタイル */
+.catch-text {
+  position: absolute;
+  top: 50%; /* 画像の50%の高さに配置 */
+  left: 50%; /* 水平方向に中央寄せ */
+  transform: translate(-50%, -50%); /* 完全に中央揃え */
+  color: white; /* テキストを白色に */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* テキストに影を付けて見やすくする */
+}
+
+.catch-text h1 {
+  font-size: 2.5rem; /* 見出しのフォントサイズ */
+  margin: 0;
+}
+
+.catch-text p {
+  font-size: 1.5rem; /* サブテキストのフォントサイズ */
+  margin: 0;
+}
+
+
 /*スライドショー（slickを使用）
 ---------------------------------------------------------------------------*/
-.mainimg {
+mainimg {
 	position: relative;
 }
 
@@ -362,7 +430,7 @@ ul.slick-dots {
 	width: 100%;
 	text-align: center;
 	position: absolute;
-	bottom: 10px;	/*下からの配置場所指定*/
+	bottom: 10px;    /*下からの配置場所指定*/
 }
 
 /*丸いページナビボタン１個あたりの設定*/
@@ -376,18 +444,25 @@ ul.slick-dots li {
 ul.slick-dots li button {
 	border: none;padding: 0;
 	display: block;
-	text-indent: -9999px;	/*デフォルトで文字が出るので画面の外に追い出す指定*/
-	width: 12px;			/*ボタンの幅*/
-	height: 12px;			/*ボタンの高さ*/
-	border-radius: 50%;		/*丸くする指定*/
-	cursor: pointer;		/*クリックで画像へジャンプするので、わかりやすいようhover時にpointerになるように。*/
-	background: #fff;		/*背景色。白。*/	
+	text-indent: -9999px;    /*デフォルトで文字が出るので画面の外に追い出す指定*/
+	width: 12px;            /*ボタンの幅*/
+	height: 12px;            /*ボタンの高さ*/
+	border-radius: 50%;        /*丸くする指定*/
+	cursor: pointer;        /*クリックで画像へジャンプするので、わかりやすいようhover時にpointerになるように。*/
+	background: #fff;        /*背景色。白。*/
 }
 
 /*buttonのアクティブ時（現在表示されている画像を示すボタン）*/
 ul.slick-dots li.slick-active button {
-	background: #ff0e0e;	/*色*/
+	background: #ff0e0e;    /*色*/
 }
+
+.bg3 {
+	background-color: #ff0000;
+}
+
+
+
 
 
 /*「お知らせ」ブロック
@@ -424,32 +499,32 @@ ul.slick-dots li.slick-active button {
 
 /*listブロック
 ---------------------------------------------------------------------------*/
-.list {
+.lis {
 	margin-bottom: 30px;	/*ボックス同士の上下間に空けるスペース*/
 	padding: 20px;			/*ボックス内の余白*/
-	background: #fff;		/*背景色*/
-	color: #999;			/*文字色*/
+	background: #43031a82;		/*背景色*/
+	color: #143668;			/*文字色*/
 	box-shadow: 5px 5px 20px rgba(0,0,0,0.1);	/*ボックスの影。右へ、下へ、ぼかし幅、0,0,0は黒の事で0.1は色が10%出た状態。*/
 	position: relative;
 }
 
 /*ボックス内のh4タグ*/
-.list h4 {
+.lis h4 {
 	margin: 0;
-	color: #666;	/*文字色*/
+	color: #a33838;	/*文字色*/
 }
-.list h4 a {
+.lis h4 a {
 	color: #666;	/*リンクテキストの文字色*/
 }
 
 /*ボックス内のpタグ*/
-.list p {
+.lis p {
 	margin: 0;
 	font-size: 0.8em;	/*文字サイズを80%に*/
 }
 
 /*list内のNEWマーク*/
-.list .new {
+.lis .new {
 	font-size: 0.6em;		/*文字サイズ*/
 	background: #ff0000;	/*背景色*/
 	color: #fff;			/*文字色*/
@@ -463,13 +538,23 @@ ul.slick-dots li.slick-active button {
 	transform: rotate(-30deg);	/*回転。まっすぐ表示させたいならこの１行を削除。*/
 }
 
-/*list内でのbtn*/
+/*サムネイルのスライドショー*/
+.lis-slide .lis {
+	margin: 10px
+
+}
+
+
+
+
+
+/*list内でのbtn
 .list .btn {
-	margin-top: 1em;	/*ボタンの上に１文字分のスペースを空ける*/
+	margin-top: 1em;	/*ボタンの上に１文字分のスペースを空ける
 }
 .list .btn a {
 	display: block;
-}
+}  */
 
 
 /*FAQ

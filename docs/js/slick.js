@@ -1,10 +1,24 @@
 
-
-// トップページスライドショー
-$('.mainimg').slick({
+//横にスライドするやつ//
+$('.lis-slide').slick({
 	autoplay: true,
-	dots: true,				//丸いページナビボタンを表示
+	dots: false,				//丸いページナビボタンを表示
 	arrows: false,			//左右の矢印
-	autoplaySpeed: 4000,	//切り替えのスピード。デフォルトは3000。
-	pauseOnHover: false,	//マウスオン時にスライドショーをストップするか。
-});
+	Speed: 100000,	//切り替えのスピード。
+	cssEase: 'linear',
+	slidesToShow: 4,
+	slidesToScroll:1,
+
+
+   //画面の幅が890px以下の場合//
+   responsive: [
+   {
+   breakpoint: 890,
+  settings: {
+	slidesToShow: 2,
+  }
+ 
+ }
+
+ ]
+ });
