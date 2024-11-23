@@ -587,6 +587,10 @@ p.btn {margin: 0;}
 .bg1 {
 	background: #eee;
 }
+*/
+bg3 {
+	background: #770000;
+}
 
 
 /*PAGE TOP（↑）設定
@@ -605,71 +609,6 @@ p.btn {margin: 0;}
 	width: 60px;		/*幅*/
 	line-height: 60px;	/*高さ*/
 	border-radius: 50%;	/*円形にする*/
-}
-/*トップ画像とキャッチコピーの設定
----------------------------------------------------------------------------*/
-.top-section {
-  position: relative;
-  text-align: center;
-  color: white; /* テキストを白色に */
-}
-
-.top-image {
-  width: 100%; /* 画面幅にフィット */
-  height: 540px;
-}
-
-.catch-text {
-  position: absolute;
-  top: 50%; /* 縦中央に配置 */
-  left: 50%; /* 横中央に配置 */
-  transform: translate(-50%, -50%); /* 中央揃え */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* テキストに影をつけて視認性向上 */
-}
-
-.catch-text h1 {
-  font-size: 3rem; /* キャッチコピーの大きさを調整 */
-  margin: 0;
-}
-
-.catch-text p {
-  font-size: 1.5rem; /* サブキャッチコピーの大きさを調整 */
-  margin: 0.5rem 0 0;
-}
-
-/* 全体の調整 */
-.top-section {
-  position: relative;
-  text-align: center; /* キャッチコピーを中央寄せ */
-}
-
-/* 画像のサイズ調整 */
-.top-image {
-  width: 100%; /* 画面幅にフィット */
- /* max-width: 1200px; /* 最大幅を指定 */
-  height: auto; /* 縦横比を保つ */
-  display: block; /* 画像を中央揃え */
-  margin: 0 auto; /* 余白を均等に */
-}
-
-/* キャッチコピーのスタイル */
-.catch-text {
-  position: absolute;
-  top: 50%; /* 画像の50%の高さに配置 */
-  left: 50%; /* 水平方向に中央寄せ */
-  transform: translate(-50%, -50%); /* 完全に中央揃え */
-  color: white; /* テキストを白色に */
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* テキストに影を付けて見やすくする */
-}
-
-.catch-text h1 {
-  font-size: 2.5rem; /* 見出しのフォントサイズ */
-  margin: 0;
-}
-
-.catch-text p {
-  font-size: 1.5rem; /* サブテキストのフォントサイズ */
-  margin: 0;
 }
 
 
