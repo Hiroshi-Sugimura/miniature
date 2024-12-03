@@ -285,7 +285,7 @@ main h2 .uline {
 main h2 .uline::before {
 	content: "";position: absolute;bottom: 0px;left: 0px;width: 100%;
 	height: 3px;	/*ラインの高さ。上の「border-bottom」と「bottom」の３ヶ所の数字部分を合わせる*/
-	background: #666;			/*アニメーション時のラインの色*/
+	background: linear-gradient(150deg, #9933ff, #00984f);/*ボタンの色に合わせました*/
 	transition: 1s 0.5s;		/*1sはアニメーションの実行時間は1秒。0.5秒遅れてスタートする指定。*/
 	transform: scaleX(0);		/*幅。最初は0にして見えなくしておく。*/
 	transform-origin: left top;	/*線の出現起点が左からになるように。中央からの出現がよければこの１行削除。*/
@@ -458,7 +458,7 @@ ul.slick-dots li.slick-active button {
 }
 
 .bg3 {
-	background-color: #ff0000;
+	background: #e19500;
 }
 
 
@@ -502,16 +502,13 @@ ul.slick-dots li.slick-active button {
 .lis {
 	margin-bottom: 30px;	/*ボックス同士の上下間に空けるスペース*/
 	padding: 20px;			/*ボックス内の余白*/
-	background: #43031a82;		/*背景色*/
-	color: #143668;			/*文字色*/
-	box-shadow: 5px 5px 20px rgba(0,0,0,0.1);	/*ボックスの影。右へ、下へ、ぼかし幅、0,0,0は黒の事で0.1は色が10%出た状態。*/
 	position: relative;
 }
 
 /*ボックス内のh4タグ*/
 .lis h4 {
 	margin: 0;
-	color: #a33838;	/*文字色*/
+	color: #fff;	/*文字色*/
 }
 .lis h4 a {
 	color: #666;	/*リンクテキストの文字色*/
@@ -526,6 +523,46 @@ ul.slick-dots li.slick-active button {
 /*list内のNEWマーク*/
 .lis .new {
 	font-size: 0.6em;		/*文字サイズ*/
+	background: #ffcc00;	/*背景色*/
+	color: #fff;			/*文字色*/
+	width: 50px;			/*幅*/
+	line-height: 50px;		/*高さ*/
+	border-radius: 50%;		/*角丸のサイズ。円形になります。*/
+	text-align: center;		/*テキストをセンタリング*/
+	position: absolute;
+	left: -10px;			/*listブロックに対して左からの配置場所の指定*/
+	top: -10px;				/*listブロックに対して上からの配置場所の指定*/
+	transform: rotate(-30deg);	/*回転。まっすぐ表示させたいならこの１行を削除。*/
+}
+
+/*本来のリスト*/
+.list {
+	margin-bottom: 30px;	/*ボックス同士の上下間に空けるスペース*/
+	padding: 20px;			/*ボックス内の余白*/
+	background:floralwhite;		/*背景色*/
+	color:#000000;			/*文字色*/
+	box-shadow: 5px 5px 20px rgba(0,0,0,0.1);	/*ボックスの影。右へ、下へ、ぼかし幅、0,0,0は黒の事で0.1は色が10%出た状態。*/
+	position: relative;
+}
+
+/*ボックス内のh4タグ*/
+.list h4 {
+	margin: 0;
+	color: #666;	/*文字色*/
+}
+.list h4 a {
+	color: #666;	/*リンクテキストの文字色*/
+}
+
+/*ボックス内のpタグ*/
+.list p {
+	margin: 0;
+	font-size: 0.8em;	/*文字サイズを80%に*/
+}
+
+/*list内のNEWマーク*/
+.list .new {
+	font-size: 0.6em;		/*文字サイズ*/
 	background: #ff0000;	/*背景色*/
 	color: #fff;			/*文字色*/
 	width: 50px;			/*幅*/
@@ -537,6 +574,28 @@ ul.slick-dots li.slick-active button {
 	top: -10px;				/*listブロックに対して上からの配置場所の指定*/
 	transform: rotate(-30deg);	/*回転。まっすぐ表示させたいならこの１行を削除。*/
 }
+
+/*list内でのbtn*/
+.list .btn {
+	margin-top: 1em;	/*ボタンの上に１文字分のスペースを空ける*/
+}
+.list .btn a {
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*サムネイルのスライドショー*/
 .lis-slide .lis {
@@ -555,6 +614,12 @@ ul.slick-dots li.slick-active button {
 .list .btn a {
 	display: block;
 }  */
+
+
+
+/*list blurボックス内の設定*/
+
+
 
 
 /*FAQ
@@ -610,7 +675,7 @@ p.btn {margin: 0;}
 	display: inline-block;text-decoration: none;border: none;
 	font-size: 1em;
 	box-shadow: 2px 2px 5px rgba(0,0,0,0.2);	/*ボックスの影。右へ、下へ、ぼかし幅の順。0,0,0は黒の事で0.2は色が20%出た状態。*/
-	background: linear-gradient(150deg, #9933ff, #770000);/*背景グラデーション。#logoと合わせています。*/
+	background: linear-gradient(150deg, #9933ff, #4e985d);/*背景グラデーション。#logoと合わせています。*/
 	letter-spacing: 0.1em;	/*文字間隔を少し広くする指定*/
 	color: #fff;			/*文字色*/
 	transition: 0.3s;		/*hoverまでにかける時間。0.3秒。*/
@@ -852,7 +917,12 @@ header {
 	display: flex;		/*flexボックスを使う指定*/
 	flex-wrap: wrap;	/*折り返す指定*/
 	justify-content: space-between;	/*並びかたの種類の指定*/
+    background-color: #666 !important; /*背景色を白色に*/
+    padding: 20px; /* 内側に余白を作成 */
+    min-height: 100px; /* 最小高さを設定 */
 }
+
+
 
 /*１個あたりのボックス設定*/
 .list {
