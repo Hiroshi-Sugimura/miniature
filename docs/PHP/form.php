@@ -1,10 +1,10 @@
 <?php 
 error_reporting (E_ALL & ~E_NOTICE & ~E_WARNING & ~E_STRICT & ~E_DEPRECATED);
 //
-$mail_sys = "s2233025@cco-kanagawa.it.ac.jp";	// 管理者のメールアドレス
-$from_name = "サンプル株式会社";	// メール送信者の表示
-$from_mail = "s2233025@cco-kanagawa.it.ac.jp";	// メール送信者のメールアドレス（返信先）
-$user_mail = "item2";	// 利用者にメールを送る場合のメールアドレス項目
+$mail_sys = "s2233025@cco-kanagawa.it.ac.jp";	
+$from_name = "IoTミニチュアハウス紹介Webサイト";
+$from_mail = "s2233025@cco-kanagawa.it.ac.jp";	
+$user_mail = "item2";	
 //---
 $title = "お問い合わせフォーム";
 $subject = "お問い合わせ有難うございます\n";
@@ -14,7 +14,7 @@ $body = "お問い合わせ有難うございます。
 $subject_sys = "お問い合わせがありました\n";
 $body_sys = "\n";
 $footer = "\n------------
-サンプル株式会社
+IoTミニチュアハウス紹介Webサイト
 http://〜〜〜〜〜.com/
 ------------
 ";
@@ -22,32 +22,19 @@ http://〜〜〜〜〜.com/
 
 ?>
 <?php
-/*
- * PHPフォーム処理
- *
- * 複数添付ファイル対応
- * XHTML対応（XML宣言の処理）
- * 入力のエスケープ処理 20190411
- * キャプチャ機能追加
- *
- * 2011-2022 (c) Crytus
- */
+
 
 ini_set("short_open_tag", "0");
 ini_set("magic_quotes_gpc", "0");
 ini_set("mbstring.encoding_translation", "0");
 
-// HTMLやプログラムの漢字コード（SJISにする場合は、HTMLを含めコードの変更が必要です）
-//define("SCRIPT_ENCODING", "SJIS");
-define("SCRIPT_ENCODING", "UTF-8");
-// メール自体の漢字コードの指定です（英語・日本語の場合はJISを、それ以外の言語はUTF8にしてください）
-define("MAIL_ENCODING", "JIS");
-//define("MAIL_ENCODING", "UTF8");
 
-// セッションを使用します（セッションが有効で無いとキャプチャは動作しません）
+define("SCRIPT_ENCODING", "UTF-8");
+
+define("MAIL_ENCODING", "JIS");
+
 session_start();
 
-// キャプチャ用画像処理
 if (isset($_REQUEST["act"]) && ($_REQUEST["act"] == "captcha")) {
 	captcha();
 }
