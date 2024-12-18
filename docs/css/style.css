@@ -732,7 +732,7 @@ p.btn {margin: 0;}
 }
 
 .ta1 {
-	color: #000000		/*全体の文字色*/
+	color: #ffffff		/*全体の文字色*/
 }
 
 /*テーブル
@@ -1044,7 +1044,7 @@ header {
 	font-size:2em;
 	text-align: center;
 	position: relative;
-	position: absolute;left: 37.5%;top: 70%;
+	position: absolute;left: 37.5%;top: 80%;
 	
 }
 
