@@ -1103,7 +1103,6 @@ header {
   button {
     position: absolute;
     left: center;
-    transform: translateX(-50%);
     bottom: 40px;
   }
 }
