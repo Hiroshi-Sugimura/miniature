@@ -1098,6 +1098,35 @@ header {
 	
 }
 
+@media screen and (max-width: 480px){
+	.big-button {
+		display: inline-block;   /* インライン要素として表示 */
+		padding: 20px 40px;      /* ボタンの内側の余白（縦20px、横40px） */
+		font-size: 20px;         /* フォントサイズを大きく */
+		background-color: #ffffff; /* ボタンの背景色 */
+		color: #000000;
+		text-align: center;      /* 文字を中央に配置 */
+		text-decoration: none;   /* リンクの下線を削除 */
+		border-radius: 10px;     /* 角を丸くする */
+		border: none;            /* 枠線を削除 */
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ボタンの影を追加 */
+		transition: background-color 0.3s ease, transform 0.3s ease; /* 背景色と拡大のアニメーション */
+		font-size:2em;
+		text-align: center;
+		position: relative;
+		position: absolute;left: 60%;top: 100%;
+		
+	}
+	
+	.big-button:hover {
+		background-color: #ffffff; /* ホバー時の背景色 */
+		color: #000000;
+		transform: scale(1.1);   
+}
+	
+
+
+
 @media screen and (max-width:499px) {.big-button {
 	display: inline-block;   /* インライン要素として表示 */
 	padding: 20px 40px;      /* ボタンの内側の余白（縦20px、横40px） */
