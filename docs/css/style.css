@@ -1104,7 +1104,7 @@ header {
     position: absolute;
     left: center;
     transform: translateX(-50%);
-    top: 175px;
+    bottom: 40px;
   }
 }
 
