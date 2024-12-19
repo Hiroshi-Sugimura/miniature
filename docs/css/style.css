@@ -1104,7 +1104,15 @@ header {
     position: absolute;
     left: 30%;
     transform: translateX(-50%);
-    bottom: 25%;
+    bottom: 16%;
   }
 }
 
+@media screen and (max-width: 4096px) {
+  button {
+    position: absolute;
+    left: 100%;
+    transform: translateX(-50%);
+    bottom: 35%;
+  }
+}
