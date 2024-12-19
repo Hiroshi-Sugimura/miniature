@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>お知らせページ</title>
+<title>お問い合わせページ</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="ここにサイト説明を入れます">
 <link rel="stylesheet" href="css/style.css">
@@ -14,28 +14,20 @@
 
 <header>
 
-<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="SAMPLE COMPANY"></a></h1>
+
 
 <!--メニュー-->
 <nav id="menubar">
-<ul>
-<li><a href="index.html">HOME</a></li>
-<li><a href="company.html">COMPANY</a></li>
-<li><a href="">SERVICE</a>
-	<ul>
-	<li><a href="service.html">メニューメニュー</a></li>
-	<li><a href="service.html">メニュー</a></li>
-	<li><a href="service.html">メニュー</a></li>
-	<li><a href="service.html">メニュー</a></li>
-	</ul>
-</li>
-<li><a href="faq.html">FAQ</a></li>
-<li><a href="contact.html">CONTACT</a></li>
-<li><a href="#"><i class="fab fa-twitter"></i></a></li>
-<li><a href="#"><i class="fab fa-instagram"></i></a></li>
-<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-</ul>
-</nav>
+    <ul>
+    <li><a href="index.html">トップ</a></li>
+    <li><a href="gaiyou.html">ミニチュアハウスとは何か</a></li>
+    <li><a href="mokuteki.html">目的・アピールポイント</a></li>
+    <li><a href="teian.html">教育提案</a></li>
+    <li><a href="osirase.company.html">お知らせ、経緯など</a></li>
+    <li><a href="otoiawase.company.html">お問い合わせ</a></li>
+    <li><a href="subete.company.html">関連技術紹介</a></li>
+    </ul>
+    </nav>
 
 <!--開閉ボタン（ハンバーガーアイコン）-->
 <div id="menubar_hdr">
@@ -48,15 +40,31 @@
 
 <section>
 
-<h2>EL(エコネットライト)</h2>
+<h1>EL(エコネットライト)</h1>
 
 <table class="ta1">
-<caption>
+
 
 
 
 <h2>エコネットライト</h2>
-<p>aaaaaaaaaaaaaaaaaaaaaaa</p>
+<p>エコネットライト（EcoNet Light）は、パナソニックが提供する家庭向けのスマート照明システムの名前です。このシステムは、インターネット接続を活用して、家の中の照明を遠隔操作したり、効率的に管理したりすることができるスマート家電の一部です。<br>
+
+主な特徴：<br>
+	1. 遠隔操作 : スマートフォンやタブレットから、インターネット経由で家の照明をオン・オフしたり、明るさや色温度を調整したりできます。これにより、外出先でも照明を操作できるようになります。<br>
+	
+	2. エネルギー効率の向上 : 照明の使用状況を把握して、自動的に省エネモードに切り替えたり、電力消費を最適化することが可能です。<br>
+	
+	3. スケジュール機能 : 一定の時間に照明を自動でオン・オフする設定ができるため、生活スタイルに合わせた使い方ができます。例えば、寝る時間や帰宅時間に合わせて照明が自動で点灯するように設定できます。<br>
+	
+	4. 音声操作 : 対応するスマートスピーカー（Google アシスタントやAmazon Alexaなど）と連携して、音声で照明をコントロールすることもできます。<br>
+	
+エコネットライトの利点：<br>
+	- 省エネ : 適切なタイミングで照明をオン・オフすることで電力の無駄を減らし、省エネにつながります。<br>
+	- 利便性 : どこからでも照明の管理ができ、生活の利便性が向上します。<br>
+	- 自動化 : 特定の条件（時間や動き）に応じて照明を自動で調整できるため、快適な環境を作りやすいです。<br>
+	
+	エコネットライトは、家庭の照明をよりスマートで効率的に管理するためのシステムとして、現代のスマートホームに適した製品です。</p>
 
 
 
@@ -74,18 +82,29 @@
 </main>
 
 <footer>
-
-<ul id="footermenu">
-<li><a href="#">フッターメニュー</a></li>
-<li><a href="#">フッターメニュー</a></li>
-<li><a href="#">フッターメニュー</a></li>
-<li><a href="#">フッターメニュー</a></li>
-<li><a href="#">フッターメニュー</a></li>
-</ul>
-
-
-
-
-
-</body>
-</html>
+	
+	
+	
+	<small>Copyright&copy; <a href="index.html">SAMPLE COMPANY</a> All Rights Reserved.</small>
+	<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+	
+	</footer>
+	
+	</div>
+	<!--/#container-->
+	
+	<!--jQueryの読み込み-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+	<!--パララックス（inview）-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+	<script src="js/jquery.inview_set.js"></script>
+	
+	<!--このテンプレート専用のスクリプト-->
+	<script src="js/main.js"></script>
+	
+	<!--ページの上部へ戻るボタン-->
+	<div class="pagetop"><a href="#"><i class="fas fa-angle-double-up"></i></a></div>
+	
+	</body>
+	</html>
