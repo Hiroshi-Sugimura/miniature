@@ -1113,6 +1113,6 @@ header {
     position: absolute;
     left: 100%;
     transform: translateX(-50%);
-    bottom: 35%;
+    bottom: 20%;
   }
 }
