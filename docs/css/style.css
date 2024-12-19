@@ -1098,7 +1098,7 @@ header {
 	
 }
 
-@media screen and (max-width: 480px){
+#media screen {max-width: 480px} {
 	.big-button {
 		display: inline-block;   /* インライン要素として表示 */
 		padding: 20px 40px;      /* ボタンの内側の余白（縦20px、横40px） */
@@ -1122,8 +1122,7 @@ header {
 		background-color: #ffffff; /* ホバー時の背景色 */
 		color: #000000;
 		transform: scale(1.1);   
-}
-	
+}  }
 
 
 
