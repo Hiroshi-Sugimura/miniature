@@ -1084,10 +1084,10 @@ header {
 	border: none;            /* 枠線を削除 */
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ボタンの影を追加 */
 	transition: background-color 0.3s ease, transform 0.3s ease; /* 背景色と拡大のアニメーション */
-	font-size:2em;
+	font-size:1em;
 	text-align: center;
 	position: relative;
-	position: absolute;left: center;top: 108%;
+	position: absolute;left:70% ;top: 85%;
 	
 }
 
@@ -1102,17 +1102,9 @@ header {
 @media screen and (max-width: 844px) {
   button {
     position: absolute;
-    left: center;
+    left: 30%;
     transform: translateX(-50%);
-    bottom: 40px;
+    bottom: 25%;
   }
 }
 
-@media screen and (max-width: 3840px) {
-  button {
-    position: absolute;
-    left: center;
-    transform: translateX(-50%);
-    bottom: 50px;
-  }
-}
