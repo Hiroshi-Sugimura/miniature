@@ -6,7 +6,7 @@ $('.lis-slide').slick({
 	arrows: false,			//左右の矢印
 	Speed: 100000,	//切り替えのスピード。
 	cssEase: 'linear',
-	slidesToShow: 4,
+	slidesToShow: 2,
 	slidesToScroll:1,
 
 
