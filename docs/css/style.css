@@ -459,6 +459,10 @@ ul.slick-dots li.slick-active button {
 
 .bg3 {
 	background: #e19500;
+	padding: 0; /* セクション全体の余白を削除 */
+  margin: 0;  /* 余白削除 */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 
@@ -598,11 +602,38 @@ ul.slick-dots li.slick-active button {
 
 
 /*サムネイルのスライドショー*/
-.lis-slide .lis {
-	margin: 10px
-
+.lis-slide  {
+	width: 100%; /* 親要素が全体の横幅をカバー */
+  display: flex; /* 横並びにする */
+  box-sizing: border-box;
+	padding: 0; /* 不要な余白を削除 */
+  margin: 0;  /* 左右の隙間をなくす */
+}
+.slick-slide {
+  box-sizing: border-box;
+  float:    none;
+  display: block;
 }
 
+.slick-track {
+  display: flex !important; /* スライド要素をフレックスボックスで並べる */
+	padding: 0 !important;
+  margin: 0 !important;
+  width: 100%; /* 幅を全体に広げる */
+}
+
+.slick-list {
+  overflow: hidden;
+	margin: 0 auto !important;
+  padding:0      !important;
+	width: 100%;
+}
+
+.lis img {
+  width: 100%; /* 画像をスライド内で100%の幅に調整 */
+  height: auto;
+	display: block; /* inline要素の余白を削除 */
+}
 
 
 
