@@ -54,7 +54,11 @@ nav {margin: 0;padding: 0;}
 table {border-collapse:collapse;}
 
 /*画像全般の設定*/
-img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
+img {border: none;
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
 
 /*videoタグ*/
 video {max-width: 100%;}
@@ -390,7 +394,6 @@ footer .pr {display: block;}
 /* 画像のサイズ調整 */
 .top-image {
   width: 100%; /* 画面幅にフィット */
-  max-width: 1200px; /* 最大幅を指定 */
   height: auto; /* 縦横比を保つ */
   display: block; /* 画像を中央揃え */
   margin: 0 auto; /* 余白を均等に */
@@ -459,10 +462,11 @@ ul.slick-dots li.slick-active button {
 
 .bg3 {
 	background: #e19500;
-	padding: 0; /* セクション全体の余白を削除 */
-  margin: 0;  /* 余白削除 */
-  width: 100%;
+	width: 100%;
   box-sizing: border-box;
+  padding: 20px; /* 必要に応じて調整 */
+  margin: 0 auto;
+  text-align: center; /* 中央揃え */
 }
 
 
@@ -602,56 +606,40 @@ ul.slick-dots li.slick-active button {
 
 
 /*サムネイルのスライドショー*/
-.lis-slide  {
-	width: 100%; /* 親要素が全体の横幅をカバー */
-  display: flex; /* 横並びにする */
+.lis-slide {
+  width: 100%;
   box-sizing: border-box;
-	padding: 0; /* 不要な余白を削除 */
-  margin: 0;  /* 左右の隙間をなくす */
+  padding: 0;
+  margin: 0;
 }
+
 .slick-slide {
   box-sizing: border-box;
-  float:    none;
-  display: block;
+  float: none;
+  display: flex; /* フレックスボックスを使用 */
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center; /* 垂直方向の中央揃え */
 }
 
 .slick-track {
   display: flex !important; /* スライド要素をフレックスボックスで並べる */
-	padding: 0 !important;
+  padding: 0 !important;
   margin: 0 !important;
   width: 100%; /* 幅を全体に広げる */
 }
 
 .slick-list {
-  overflow: hidden;
-	margin: 0 auto !important;
-  padding:0      !important;
-	width: 100%;
+  overflow: hidden ;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  width: 100%;
 }
 
 .lis img {
   width: 100%; /* 画像をスライド内で100%の幅に調整 */
   height: auto;
-	display: block; /* inline要素の余白を削除 */
+  display: block; /* inline要素の余白を削除 */
 }
-
-
-
-
-/*list内でのbtn
-.list .btn {
-	margin-top: 1em;	/*ボタンの上に１文字分のスペースを空ける
-}
-.list .btn a {
-	display: block;
-}  */
-
-
-
-/*list blurボックス内の設定*/
-
-
-
 
 /*FAQ
 ---------------------------------------------------------------------------*/

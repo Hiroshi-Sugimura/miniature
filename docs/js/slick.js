@@ -10,12 +10,13 @@ $('.lis-slide').slick({
 	slidesToScroll:1,
   variableWidth: false, // falseでスライド幅が均等
   infinite: true,
-   //画面の幅が890px以下の場合//
-   responsive: [
+  centerMode: true,           // 中央揃え
+  responsive: [
    {
+    
    breakpoint: 890,
-  settings: {
-	slidesToShow: 2,
+   settings: {
+	 slidesToShow: 1,
   }
  
  }
