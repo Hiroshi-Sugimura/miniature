@@ -4,10 +4,11 @@ $('.lis-slide').slick({
 	autoplay: true,
 	dots: false,				//丸いページナビボタンを表示
 	arrows: false,			//左右の矢印
-	Speed: 5000,	//切り替えのスピード。
+  autoplaySpeed: 0,    //切り替えのスピード。今回は平均してなめらかに移動させるので0にする。
+	Speed: 1000,	//切り替えのスピード。
 	cssEase: 'linear',
 	slidesToShow: 2,
-	slidesToScroll:1,
+	slidesToScroll:2,
   variableWidth: false, // falseでスライド幅が均等
   infinite: true,
   centerMode: true,           // 中央揃え
