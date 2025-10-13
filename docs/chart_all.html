@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>累計出荷台数の推移</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* スクロールバーを隠す */
+        }
+        .chart-container {
+            width: 90%;
+            height: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container" id="chart-container"></div>
+
+    <script>
+        const csvData = `年度,累計出荷台数
+2013,4671414
+2014,9893648
+2015,19973397
+2016,37526873
+2017,57993921
+2018,77332741
+2019,95113331
+2020,113139526
+2021,126178965
+2022,138643935
+2023,149799909
+2024,158788203`;
+
+        const lines = csvData.split('\n').slice(1).filter(line => line);
+        const data = lines.map(line => {
+            const parts = line.split(',');
+            return {
+                year: parts[0],
+                cumulative: Number(parts[1])
+            };
+        });
+
+        const container = document.getElementById('chart-container');
+
+        function drawChart() {
+            // コンテナをクリア
+            container.innerHTML = '';
+
+            const margin = { top: 120, right: 80, bottom: 50, left: 100 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = container.clientHeight - margin.top - margin.bottom;
+
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.setAttribute('viewBox', `0 0 ${container.clientWidth} ${container.clientHeight}`);
+            container.appendChild(svg);
+
+            const chartGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            chartGroup.setAttribute('transform', `translate(${margin.left}, ${margin.top})`);
+            svg.appendChild(chartGroup);
+
+            const maxCumulative = Math.max(...data.map(d => d.cumulative));
+            
+            // X軸
+            const xBandWidth = width / data.length;
+            data.forEach((d, i) => {
+                const x = i * xBandWidth + xBandWidth / 2;
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute('x', x);
+                text.setAttribute('y', height + 25);
+                text.setAttribute('text-anchor', 'middle');
+                text.textContent = d.year;
+                chartGroup.appendChild(text);
+            });
+
+            // Y軸 (累計出荷台数)
+            const yAxisShipments = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            chartGroup.appendChild(yAxisShipments);
+            const tickInterval = 20000000; // 20M刻み
+            const maxTickValue = Math.ceil(maxCumulative / tickInterval) * tickInterval;
+            for (let value = 0; value <= maxTickValue; value += tickInterval) {
+                const y = height - (value / maxCumulative) * height;
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute('x', -10);
+                text.setAttribute('y', y);
+                text.setAttribute('text-anchor', 'end');
+                text.setAttribute('alignment-baseline', 'middle');
+                
+                // 単位を千万台、億台で表示
+                let labelText = '';
+                if (value === 0) {
+                    labelText = '0';
+                } else if (value >= 100000000) { // 1億以上
+                    labelText = `${(value / 100000000).toFixed(1)}億台`;
+                } else { // 千万台
+                    labelText = `${(value / 10000000)}千万台`;
+                }
+                text.textContent = labelText;
+                yAxisShipments.appendChild(text);
+
+                const gridLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                gridLine.setAttribute('x1', 0);
+                gridLine.setAttribute('y1', y);
+                gridLine.setAttribute('x2', width);
+                gridLine.setAttribute('y2', y);
+                gridLine.setAttribute('stroke', '#e0e0e0');
+                gridLine.setAttribute('stroke-dasharray', '2,2');
+                yAxisShipments.appendChild(gridLine);
+            }
+            const yAxisLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            yAxisLabel.setAttribute('transform', 'rotate(-90)');
+            yAxisLabel.setAttribute('y', -margin.left + 30);
+            yAxisLabel.setAttribute('x', -height / 2);
+            yAxisLabel.setAttribute('text-anchor', 'middle');
+            yAxisLabel.textContent = '累計出荷台数';
+            chartGroup.appendChild(yAxisLabel);
+
+            // 折れ線グラフ
+            const linePath = data.map((d, i) => {
+                const x = i * xBandWidth + xBandWidth / 2;
+                const y = height - (d.cumulative / maxCumulative) * height;
+                return `${i === 0 ? 'M' : 'L'} ${x},${y}`;
+            }).join(' ');
+
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute('d', linePath);
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', 'rgba(220, 20, 60, 1)'); // 目立つ赤色
+            path.setAttribute('stroke-width', 3);
+            chartGroup.appendChild(path);
+            
+            data.forEach((d, i) => {
+                const x = i * xBandWidth + xBandWidth / 2;
+                const y = height - (d.cumulative / maxCumulative) * height;
+                const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+                circle.setAttribute('r', 5);
+                circle.setAttribute('fill', 'rgba(220, 20, 60, 1)'); // 目立つ赤色
+                chartGroup.appendChild(circle);
+            });
+
+            // タイトル
+            const title = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            title.setAttribute('x', width / 2);
+            title.setAttribute('y', -80); // タイトルを上部に配置
+            title.setAttribute('text-anchor', 'middle');
+            title.setAttribute('font-size', '1.5em');
+            title.textContent = 'ECHONETLite機器の累計出荷台数';
+            chartGroup.appendChild(title);
+
+            // 凡例
+            const legendData = [
+                { label: '累計出荷台数', color: 'rgba(220, 20, 60, 1)' }
+            ];
+            const legend = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            const legendX = width - 120;
+            legend.setAttribute('transform', `translate(${legendX}, ${-40})`);
+            chartGroup.appendChild(legend);
+
+            legendData.forEach((item, i) => {
+                const legendItem = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                legendItem.setAttribute('transform', `translate(0, ${i * 20})`);
+                
+                const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute('x', 0);
+                rect.setAttribute('y', 0);
+                rect.setAttribute('width', 15);
+                rect.setAttribute('height', 15);
+                rect.setAttribute('fill', item.color);
+                legendItem.appendChild(rect);
+
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute('x', 20);
+                text.setAttribute('y', 12);
+                text.textContent = item.label;
+                legendItem.appendChild(text);
+
+                legend.appendChild(legendItem);
+            });
+        }
+
+        // 初期描画とリサイズ対応
+        window.addEventListener('resize', drawChart);
+        drawChart();
+
+    </script>
+</body>
+</html>

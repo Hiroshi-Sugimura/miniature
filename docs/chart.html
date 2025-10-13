@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エアコン出荷台数とECHONET Lite対応状況</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* スクロールバーを隠す */
+        }
+        .chart-container {
+            width: 90%;
+            height: 80%;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container" id="chart-container"></div>
+
+    <script>
+        const csvData = `年度,全出荷台数,ECHONETLite対応,対応率(%)
+2020,10097000,7938674,78.62408636
+2021,9292000,7289019,78.44402712
+2022,9146000,6723081,73.50842991
+2023,8775000,6660823,75.90681481
+2024,9414000,7001882,74.37733163`;
+
+        const lines = csvData.split('\n').slice(1).filter(line => line);
+        const data = lines.map(line => {
+            const parts = line.split(',');
+            return {
+                year: parts[0],
+                total: Number(parts[1]),
+                echonet: Number(parts[2]),
+                rate: Number(parts[3])
+            };
+        });
+
+        const container = document.getElementById('chart-container');
+
+        function drawChart() {
+            // コンテナをクリア
+            container.innerHTML = '';
+
+            const margin = { top: 120, right: 80, bottom: 50, left: 80 };
+            const width = container.clientWidth - margin.left - margin.right;
+            const height = container.clientHeight - margin.top - margin.bottom;
+
+            const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            svg.setAttribute('viewBox', `0 0 ${container.clientWidth} ${container.clientHeight}`);
+            container.appendChild(svg);
+
+            const chartGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            chartGroup.setAttribute('transform', `translate(${margin.left}, ${margin.top})`);
+            svg.appendChild(chartGroup);
+
+            const maxShipment = Math.max(...data.map(d => d.total));
+            
+            // X軸
+            const xBandWidth = width / data.length;
+            data.forEach((d, i) => {
+                const x = i * xBandWidth + xBandWidth / 2;
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute('x', x);
+                text.setAttribute('y', height + 25);
+                text.setAttribute('text-anchor', 'middle');
+                text.textContent = d.year;
+                chartGroup.appendChild(text);
+            });
+
+            // Y軸 (左 - 出荷台数)
+            const yAxisShipments = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            chartGroup.appendChild(yAxisShipments);
+            const yTicks = 5;
+            for (let i = 0; i <= yTicks; i++) {
+                const value = (maxShipment / yTicks) * i;
+                const y = height - (value / maxShipment) * height;
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute('x', -10);
+                text.setAttribute('y', y);
+                text.setAttribute('text-anchor', 'end');
+                text.setAttribute('alignment-baseline', 'middle');
+                text.textContent = `${(value / 1000000).toFixed(1)}M`;
+                yAxisShipments.appendChild(text);
+
+                const gridLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                gridLine.setAttribute('x1', 0);
+                gridLine.setAttribute('y1', y);
+                gridLine.setAttribute('x2', width);
+                gridLine.setAttribute('y2', y);
+                gridLine.setAttribute('stroke', '#e0e0e0');
+                gridLine.setAttribute('stroke-dasharray', '2,2');
+                yAxisShipments.appendChild(gridLine);
+            }
+            const yAxisLeftLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            yAxisLeftLabel.setAttribute('transform', 'rotate(-90)');
+            yAxisLeftLabel.setAttribute('y', -margin.left + 20);
+            yAxisLeftLabel.setAttribute('x', -height / 2);
+            yAxisLeftLabel.setAttribute('text-anchor', 'middle');
+            yAxisLeftLabel.textContent = '出荷台数';
+            chartGroup.appendChild(yAxisLeftLabel);
+
+            // Y軸 (右 - 対応率)
+            const yAxisRate = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            chartGroup.appendChild(yAxisRate);
+            for (let i = 0; i <= 5; i++) {
+                const value = i * 20;
+                const y = height - (value / 100) * height;
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute('x', width + 10);
+                text.setAttribute('y', y);
+                text.setAttribute('text-anchor', 'start');
+                text.setAttribute('alignment-baseline', 'middle');
+                text.textContent = `${value}%`;
+                yAxisRate.appendChild(text);
+            }
+            const yAxisRightLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            yAxisRightLabel.setAttribute('transform', 'rotate(-90)');
+            yAxisRightLabel.setAttribute('y', width + margin.right - 20);
+            yAxisRightLabel.setAttribute('x', -height / 2);
+            yAxisRightLabel.setAttribute('text-anchor', 'middle');
+            yAxisRightLabel.textContent = '対応率 (%)';
+            chartGroup.appendChild(yAxisRightLabel);
+
+            // 積層棒グラフ
+            const barWidth = xBandWidth * 0.5;
+            data.forEach((d, i) => {
+                const x = i * xBandWidth + (xBandWidth - barWidth) / 2;
+                const nonEchonet = d.total - d.echonet;
+
+                // ECHONETLite対応 (下)
+                const echonetBarHeight = (d.echonet / maxShipment) * height;
+                const echonetBar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                echonetBar.setAttribute('x', x);
+                echonetBar.setAttribute('y', height - echonetBarHeight);
+                echonetBar.setAttribute('width', barWidth);
+                echonetBar.setAttribute('height', echonetBarHeight);
+                echonetBar.setAttribute('fill', 'rgba(255, 99, 132, 0.7)');
+                chartGroup.appendChild(echonetBar);
+                
+                // 非対応 (上)
+                const nonEchonetBarHeight = (nonEchonet / maxShipment) * height;
+                const nonEchonetBar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                nonEchonetBar.setAttribute('x', x);
+                nonEchonetBar.setAttribute('y', height - echonetBarHeight - nonEchonetBarHeight);
+                nonEchonetBar.setAttribute('width', barWidth);
+                nonEchonetBar.setAttribute('height', nonEchonetBarHeight);
+                nonEchonetBar.setAttribute('fill', 'rgba(54, 162, 235, 0.7)');
+                chartGroup.appendChild(nonEchonetBar);
+            });
+
+            // 折れ線グラフ
+            const linePath = data.map((d, i) => {
+                const x = i * xBandWidth + xBandWidth / 2;
+                const y = height - (d.rate / 100) * height;
+                return `${i === 0 ? 'M' : 'L'} ${x},${y}`;
+            }).join(' ');
+
+            const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            path.setAttribute('d', linePath);
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', 'rgba(220, 20, 60, 1)'); // 目立つ赤色に変更
+            path.setAttribute('stroke-width', 3); // 線を太くして目立たせる
+            chartGroup.appendChild(path);
+            
+            data.forEach((d, i) => {
+                const x = i * xBandWidth + xBandWidth / 2;
+                const y = height - (d.rate / 100) * height;
+                const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+                circle.setAttribute('r', 5); // 円を大きくして目立たせる
+                circle.setAttribute('fill', 'rgba(220, 20, 60, 1)'); // 目立つ赤色に変更
+                chartGroup.appendChild(circle);
+            });
+
+            // タイトル
+            const title = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            title.setAttribute('x', width / 2);
+            title.setAttribute('y', -80); // タイトルを更に上に移動
+            title.setAttribute('text-anchor', 'middle');
+            title.setAttribute('font-size', '1.5em');
+            title.textContent = 'エアコン出荷台数とECHONET Lite対応率の推移';
+            chartGroup.appendChild(title);
+
+            // 凡例
+            const legendData = [
+                { label: 'ECHONETLite対応', color: 'rgba(255, 99, 132, 0.7)' },
+                { label: '非対応', color: 'rgba(54, 162, 235, 0.7)' },
+                { label: '対応率(%)', color: 'rgba(220, 20, 60, 1)' } // 目立つ赤色に変更
+            ];
+            const legend = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            const legendX = width - 150;
+            legend.setAttribute('transform', `translate(${legendX}, ${-40})`); // 凡例をタイトルより下に配置
+            chartGroup.appendChild(legend);
+
+            legendData.forEach((item, i) => {
+                const legendItem = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                legendItem.setAttribute('transform', `translate(0, ${i * 20})`);
+                
+                const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                rect.setAttribute('x', 0);
+                rect.setAttribute('y', 0);
+                rect.setAttribute('width', 15);
+                rect.setAttribute('height', 15);
+                rect.setAttribute('fill', item.color);
+                legendItem.appendChild(rect);
+
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.setAttribute('x', 20);
+                text.setAttribute('y', 12);
+                text.textContent = item.label;
+                legendItem.appendChild(text);
+
+                legend.appendChild(legendItem);
+            });
+        }
+
+        // 初期描画とリサイズ対応
+        window.addEventListener('resize', drawChart);
+        drawChart();
+
+    </script>
+</body>
+</html>
