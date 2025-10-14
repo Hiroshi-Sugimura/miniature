@@ -2,22 +2,61 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
     <title>エアコン出荷台数とECHONET Lite対応状況</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            width: 100vw;
             margin: 0;
-            overflow: hidden; /* スクロールバーを隠す */
+            padding: 0;
+            overflow: hidden;
+            background-color: #ffffff;
         }
+        
         .chart-container {
-            width: 90%;
-            height: 80%;
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+        }
+        
+        /* タブレット用 (768px以下) */
+        @media screen and (max-width: 768px) {
+            .chart-container {
+                padding: 8px;
+            }
+        }
+        
+        /* スマートフォン用 (480px以下) */
+        @media screen and (max-width: 480px) {
+            .chart-container {
+                padding: 5px;
+            }
+        }
+        
+        /* 小型スマホ用 (320px以下) */
+        @media screen and (max-width: 320px) {
+            .chart-container {
+                padding: 3px;
+            }
+        }
+
+        svg {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -45,25 +84,82 @@
 
         const container = document.getElementById('chart-container');
 
+        function getResponsiveSettings(width) {
+            if (width <= 320) {
+                // 小型スマホ
+                return {
+                    margin: { top: 80, right: 50, bottom: 60, left: 60 },
+                    titleFontSize: '0.9em',
+                    titleText: 'エアコン出荷台数と\nECHONET Lite対応率',
+                    labelFontSize: '9px',
+                    legendFontSize: '10px',
+                    axisLabelFontSize: '10px',
+                    strokeWidth: 2,
+                    circleRadius: 3,
+                    rotateXLabel: true,
+                    yAxisFormat: 'compact'
+                };
+            } else if (width <= 480) {
+                // スマートフォン
+                return {
+                    margin: { top: 100, right: 60, bottom: 70, left: 70 },
+                    titleFontSize: '1.1em',
+                    titleText: 'エアコン出荷台数とECHONET Lite対応率',
+                    labelFontSize: '10px',
+                    legendFontSize: '11px',
+                    axisLabelFontSize: '11px',
+                    strokeWidth: 2.5,
+                    circleRadius: 4,
+                    rotateXLabel: true,
+                    yAxisFormat: 'compact'
+                };
+            } else if (width <= 768) {
+                // タブレット
+                return {
+                    margin: { top: 110, right: 70, bottom: 60, left: 75 },
+                    titleFontSize: '1.3em',
+                    titleText: 'エアコン出荷台数とECHONET Lite対応率の推移',
+                    labelFontSize: '11px',
+                    legendFontSize: '12px',
+                    axisLabelFontSize: '12px',
+                    strokeWidth: 2.5,
+                    circleRadius: 4,
+                    rotateXLabel: false,
+                    yAxisFormat: 'normal'
+                };
+            } else {
+                // デスクトップ
+                return {
+                    margin: { top: 120, right: 80, bottom: 50, left: 80 },
+                    titleFontSize: '1.5em',
+                    titleText: 'エアコン出荷台数とECHONET Lite対応率の推移',
+                    labelFontSize: '12px',
+                    legendFontSize: '14px',
+                    axisLabelFontSize: '14px',
+                    strokeWidth: 3,
+                    circleRadius: 5,
+                    rotateXLabel: false,
+                    yAxisFormat: 'normal'
+                };
+            }
+        }
+
         function drawChart() {
-            // コンテナをクリア
             container.innerHTML = '';
 
-            // レスポンシブなマージン設定
-            const isSmallScreen = container.clientWidth < 600;
-            const margin = { 
-                top: 120, 
-                right: 80, 
-                bottom: isSmallScreen ? 80 : 50, 
-                left: isSmallScreen ? 80 : 80 
-            };
-            const width = container.clientWidth - margin.left - margin.right;
+            const containerWidth = container.clientWidth;
+            const settings = getResponsiveSettings(containerWidth);
+            const { margin, titleFontSize, titleText, labelFontSize, legendFontSize, 
+                    axisLabelFontSize, strokeWidth, circleRadius, rotateXLabel, yAxisFormat } = settings;
+            
+            const width = containerWidth - margin.left - margin.right;
             const height = container.clientHeight - margin.top - margin.bottom;
 
             const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
             svg.setAttribute('width', '100%');
             svg.setAttribute('height', '100%');
-            svg.setAttribute('viewBox', `0 0 ${container.clientWidth} ${container.clientHeight}`);
+            svg.setAttribute('viewBox', `0 0 ${containerWidth} ${container.clientHeight}`);
+            svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
             container.appendChild(svg);
 
             const chartGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -78,13 +174,12 @@
                 const x = i * xBandWidth + xBandWidth / 2;
                 const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
                 text.setAttribute('x', x);
-                text.setAttribute('y', height + (isSmallScreen ? 40 : 25));
+                text.setAttribute('y', height + (rotateXLabel ? 35 : 20));
+                text.setAttribute('font-size', labelFontSize);
                 
-                // 画面幅が狭い場合は斜めに回転
-                if (isSmallScreen) {
-                    text.setAttribute('transform', `rotate(-45, ${x}, ${height + 40})`);
+                if (rotateXLabel) {
+                    text.setAttribute('transform', `rotate(-45, ${x}, ${height + 35})`);
                     text.setAttribute('text-anchor', 'end');
-                    text.setAttribute('font-size', '12px');
                 } else {
                     text.setAttribute('text-anchor', 'middle');
                 }
@@ -96,8 +191,9 @@
             // Y軸 (左 - 出荷台数)
             const yAxisShipments = document.createElementNS("http://www.w3.org/2000/svg", "g");
             chartGroup.appendChild(yAxisShipments);
-            const tickInterval = 2000000; // 200万台刻み
-            const maxTickValue = 10000000; // 1千万台で固定
+            const tickInterval = 2000000;
+            const maxTickValue = 10000000;
+            
             for (let value = 0; value <= maxTickValue; value += tickInterval) {
                 const y = height - (value / maxShipment) * height;
                 const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -105,15 +201,25 @@
                 text.setAttribute('y', y);
                 text.setAttribute('text-anchor', 'end');
                 text.setAttribute('alignment-baseline', 'middle');
+                text.setAttribute('font-size', axisLabelFontSize);
                 
-                // 単位を綺麗に表示
                 let labelText = '';
                 if (value === 0) {
                     labelText = '0';
-                } else if (value === 10000000) { // 1千万台
-                    labelText = '1千万台';
-                } else { // 万台
-                    labelText = `${value / 10000}万台`;
+                } else if (yAxisFormat === 'compact') {
+                    // スマホ用：コンパクト表示
+                    if (value === 10000000) {
+                        labelText = '1000万';
+                    } else {
+                        labelText = `${value / 10000}万`;
+                    }
+                } else {
+                    // 通常表示
+                    if (value === 10000000) {
+                        labelText = '1千万台';
+                    } else {
+                        labelText = `${value / 10000}万台`;
+                    }
                 }
                 text.textContent = labelText;
                 yAxisShipments.appendChild(text);
@@ -127,12 +233,14 @@
                 gridLine.setAttribute('stroke-dasharray', '2,2');
                 yAxisShipments.appendChild(gridLine);
             }
+            
             const yAxisLeftLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
             yAxisLeftLabel.setAttribute('transform', 'rotate(-90)');
             yAxisLeftLabel.setAttribute('y', -margin.left + 20);
             yAxisLeftLabel.setAttribute('x', -height / 2);
             yAxisLeftLabel.setAttribute('text-anchor', 'middle');
-            yAxisLeftLabel.textContent = '出荷台数';
+            yAxisLeftLabel.setAttribute('font-size', axisLabelFontSize);
+            yAxisLeftLabel.textContent = yAxisFormat === 'compact' ? '出荷数' : '出荷台数';
             chartGroup.appendChild(yAxisLeftLabel);
 
             // Y軸 (右 - 対応率)
@@ -146,15 +254,18 @@
                 text.setAttribute('y', y);
                 text.setAttribute('text-anchor', 'start');
                 text.setAttribute('alignment-baseline', 'middle');
+                text.setAttribute('font-size', axisLabelFontSize);
                 text.textContent = `${value}%`;
                 yAxisRate.appendChild(text);
             }
+            
             const yAxisRightLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
             yAxisRightLabel.setAttribute('transform', 'rotate(-90)');
             yAxisRightLabel.setAttribute('y', width + margin.right - 20);
             yAxisRightLabel.setAttribute('x', -height / 2);
             yAxisRightLabel.setAttribute('text-anchor', 'middle');
-            yAxisRightLabel.textContent = '対応率 (%)';
+            yAxisRightLabel.setAttribute('font-size', axisLabelFontSize);
+            yAxisRightLabel.textContent = '対応率(%)';
             chartGroup.appendChild(yAxisRightLabel);
 
             // 積層棒グラフ
@@ -163,7 +274,6 @@
                 const x = i * xBandWidth + (xBandWidth - barWidth) / 2;
                 const nonEchonet = d.total - d.echonet;
 
-                // ECHONETLite対応 (下)
                 const echonetBarHeight = (d.echonet / maxShipment) * height;
                 const echonetBar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
                 echonetBar.setAttribute('x', x);
@@ -173,7 +283,6 @@
                 echonetBar.setAttribute('fill', 'rgba(255, 99, 132, 0.7)');
                 chartGroup.appendChild(echonetBar);
                 
-                // 非対応 (上)
                 const nonEchonetBarHeight = (nonEchonet / maxShipment) * height;
                 const nonEchonetBar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
                 nonEchonetBar.setAttribute('x', x);
@@ -194,8 +303,8 @@
             const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
             path.setAttribute('d', linePath);
             path.setAttribute('fill', 'none');
-            path.setAttribute('stroke', 'rgba(220, 20, 60, 1)'); // 目立つ赤色に変更
-            path.setAttribute('stroke-width', 3); // 線を太くして目立たせる
+            path.setAttribute('stroke', 'rgba(220, 20, 60, 1)');
+            path.setAttribute('stroke-width', strokeWidth);
             chartGroup.appendChild(path);
             
             data.forEach((d, i) => {
@@ -204,47 +313,52 @@
                 const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
                 circle.setAttribute('cx', x);
                 circle.setAttribute('cy', y);
-                circle.setAttribute('r', 5); // 円を大きくして目立たせる
-                circle.setAttribute('fill', 'rgba(220, 20, 60, 1)'); // 目立つ赤色に変更
+                circle.setAttribute('r', circleRadius);
+                circle.setAttribute('fill', 'rgba(220, 20, 60, 1)');
                 chartGroup.appendChild(circle);
             });
 
             // タイトル
-            const title = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            title.setAttribute('x', width / 2);
-            title.setAttribute('y', -80); // タイトルを更に上に移動
-            title.setAttribute('text-anchor', 'middle');
-            title.setAttribute('font-size', isSmallScreen ? '1.2em' : '1.5em');
-            title.textContent = 'エアコン出荷台数とECHONET Lite対応率の推移';
-            chartGroup.appendChild(title);
+            const titleLines = titleText.split('\n');
+            titleLines.forEach((line, index) => {
+                const title = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                title.setAttribute('x', width / 2);
+                title.setAttribute('y', -80 + (index * 20));
+                title.setAttribute('text-anchor', 'middle');
+                title.setAttribute('font-size', titleFontSize);
+                title.setAttribute('font-weight', 'bold');
+                title.textContent = line;
+                chartGroup.appendChild(title);
+            });
 
             // 凡例
             const legendData = [
-                { label: 'ECHONETLite対応', color: 'rgba(255, 99, 132, 0.7)' },
+                { label: 'ECHONET対応', color: 'rgba(255, 99, 132, 0.7)' },
                 { label: '非対応', color: 'rgba(54, 162, 235, 0.7)' },
-                { label: '対応率(%)', color: 'rgba(220, 20, 60, 1)' } // 目立つ赤色に変更
+                { label: '対応率(%)', color: 'rgba(220, 20, 60, 1)' }
             ];
             const legend = document.createElementNS("http://www.w3.org/2000/svg", "g");
-            const legendX = isSmallScreen ? width - 120 : width - 150;
-            legend.setAttribute('transform', `translate(${legendX}, ${-40})`); // 凡例をタイトルより下に配置
+            const legendX = containerWidth <= 480 ? 5 : width - 130;
+            const legendY = containerWidth <= 480 ? -60 : -40;
+            legend.setAttribute('transform', `translate(${legendX}, ${legendY})`);
             chartGroup.appendChild(legend);
 
             legendData.forEach((item, i) => {
                 const legendItem = document.createElementNS("http://www.w3.org/2000/svg", "g");
-                legendItem.setAttribute('transform', `translate(0, ${i * 20})`);
+                legendItem.setAttribute('transform', `translate(0, ${i * 18})`);
                 
                 const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
                 rect.setAttribute('x', 0);
                 rect.setAttribute('y', 0);
-                rect.setAttribute('width', 15);
-                rect.setAttribute('height', 15);
+                rect.setAttribute('width', 12);
+                rect.setAttribute('height', 12);
                 rect.setAttribute('fill', item.color);
                 legendItem.appendChild(rect);
 
                 const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-                text.setAttribute('x', 20);
-                text.setAttribute('y', 12);
-                text.setAttribute('font-size', isSmallScreen ? '12px' : '14px');
+                text.setAttribute('x', 18);
+                text.setAttribute('y', 10);
+                text.setAttribute('font-size', legendFontSize);
                 text.textContent = item.label;
                 legendItem.appendChild(text);
 
@@ -252,9 +366,20 @@
             });
         }
 
-        // 初期描画とリサイズ対応
-        window.addEventListener('resize', drawChart);
+        // 初期描画
         drawChart();
+        
+        // リサイズ対応（デバウンス付き）
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(drawChart, 250);
+        });
+
+        // 画面向き変更対応
+        window.addEventListener('orientationchange', function() {
+            setTimeout(drawChart, 300);
+        });
 
     </script>
 </body>
