@@ -54,7 +54,14 @@
             // コンテナをクリア
             container.innerHTML = '';
 
-            const margin = { top: 120, right: 80, bottom: 50, left: 100 };
+            // レスポンシブなマージン設定
+            const isSmallScreen = container.clientWidth < 600;
+            const margin = { 
+                top: 120, 
+                right: 80, 
+                bottom: isSmallScreen ? 80 : 50, 
+                left: isSmallScreen ? 80 : 100 
+            };
             const width = container.clientWidth - margin.left - margin.right;
             const height = container.clientHeight - margin.top - margin.bottom;
 
@@ -76,8 +83,17 @@
                 const x = i * xBandWidth + xBandWidth / 2;
                 const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
                 text.setAttribute('x', x);
-                text.setAttribute('y', height + 25);
-                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('y', height + (isSmallScreen ? 40 : 25));
+                
+                // 画面幅が狭い場合は斜めに回転
+                if (isSmallScreen) {
+                    text.setAttribute('transform', `rotate(-45, ${x}, ${height + 40})`);
+                    text.setAttribute('text-anchor', 'end');
+                    text.setAttribute('font-size', '12px');
+                } else {
+                    text.setAttribute('text-anchor', 'middle');
+                }
+                
                 text.textContent = d.year;
                 chartGroup.appendChild(text);
             });
@@ -154,7 +170,7 @@
             title.setAttribute('x', width / 2);
             title.setAttribute('y', -80); // タイトルを上部に配置
             title.setAttribute('text-anchor', 'middle');
-            title.setAttribute('font-size', '1.5em');
+            title.setAttribute('font-size', isSmallScreen ? '1.2em' : '1.5em');
             title.textContent = 'ECHONETLite機器の累計出荷台数';
             chartGroup.appendChild(title);
 

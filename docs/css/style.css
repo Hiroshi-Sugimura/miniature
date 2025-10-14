@@ -823,6 +823,29 @@ p.btn {
     border-radius: 50%;
 }
 
+/*チャートのレスポンシブ対応
+---------------------------------------------------------------------------*/
+.chart-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* スマホでは正方形 */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chart-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
 /*その他
 ---------------------------------------------------------------------------*/
 .clearfix::after {content: "";display: block;clear: both;}
@@ -854,6 +877,10 @@ p.btn {
 
     .catch-text p {
         font-size: 1.1rem;
+    }
+
+    .chart-container {
+        padding-bottom: 80%;
     }
 
     .list {
@@ -910,6 +937,10 @@ p.btn {
 
     .catch-text p {
         font-size: 1.5rem;
+    }
+
+    .chart-container {
+        padding-bottom: 70%;
     }
 
     section,

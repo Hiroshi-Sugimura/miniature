@@ -49,7 +49,14 @@
             // コンテナをクリア
             container.innerHTML = '';
 
-            const margin = { top: 120, right: 80, bottom: 50, left: 80 };
+            // レスポンシブなマージン設定
+            const isSmallScreen = container.clientWidth < 600;
+            const margin = { 
+                top: 120, 
+                right: 80, 
+                bottom: isSmallScreen ? 80 : 50, 
+                left: isSmallScreen ? 80 : 80 
+            };
             const width = container.clientWidth - margin.left - margin.right;
             const height = container.clientHeight - margin.top - margin.bottom;
 
@@ -71,8 +78,17 @@
                 const x = i * xBandWidth + xBandWidth / 2;
                 const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
                 text.setAttribute('x', x);
-                text.setAttribute('y', height + 25);
-                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('y', height + (isSmallScreen ? 40 : 25));
+                
+                // 画面幅が狭い場合は斜めに回転
+                if (isSmallScreen) {
+                    text.setAttribute('transform', `rotate(-45, ${x}, ${height + 40})`);
+                    text.setAttribute('text-anchor', 'end');
+                    text.setAttribute('font-size', '12px');
+                } else {
+                    text.setAttribute('text-anchor', 'middle');
+                }
+                
                 text.textContent = d.year;
                 chartGroup.appendChild(text);
             });
@@ -80,16 +96,26 @@
             // Y軸 (左 - 出荷台数)
             const yAxisShipments = document.createElementNS("http://www.w3.org/2000/svg", "g");
             chartGroup.appendChild(yAxisShipments);
-            const yTicks = 5;
-            for (let i = 0; i <= yTicks; i++) {
-                const value = (maxShipment / yTicks) * i;
+            const tickInterval = 2000000; // 200万台刻み
+            const maxTickValue = 10000000; // 1千万台で固定
+            for (let value = 0; value <= maxTickValue; value += tickInterval) {
                 const y = height - (value / maxShipment) * height;
                 const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
                 text.setAttribute('x', -10);
                 text.setAttribute('y', y);
                 text.setAttribute('text-anchor', 'end');
                 text.setAttribute('alignment-baseline', 'middle');
-                text.textContent = `${(value / 1000000).toFixed(1)}M`;
+                
+                // 単位を綺麗に表示
+                let labelText = '';
+                if (value === 0) {
+                    labelText = '0';
+                } else if (value === 10000000) { // 1千万台
+                    labelText = '1千万台';
+                } else { // 万台
+                    labelText = `${value / 10000}万台`;
+                }
+                text.textContent = labelText;
                 yAxisShipments.appendChild(text);
 
                 const gridLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -188,7 +214,7 @@
             title.setAttribute('x', width / 2);
             title.setAttribute('y', -80); // タイトルを更に上に移動
             title.setAttribute('text-anchor', 'middle');
-            title.setAttribute('font-size', '1.5em');
+            title.setAttribute('font-size', isSmallScreen ? '1.2em' : '1.5em');
             title.textContent = 'エアコン出荷台数とECHONET Lite対応率の推移';
             chartGroup.appendChild(title);
 
@@ -199,7 +225,7 @@
                 { label: '対応率(%)', color: 'rgba(220, 20, 60, 1)' } // 目立つ赤色に変更
             ];
             const legend = document.createElementNS("http://www.w3.org/2000/svg", "g");
-            const legendX = width - 150;
+            const legendX = isSmallScreen ? width - 120 : width - 150;
             legend.setAttribute('transform', `translate(${legendX}, ${-40})`); // 凡例をタイトルより下に配置
             chartGroup.appendChild(legend);
 
@@ -218,6 +244,7 @@
                 const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
                 text.setAttribute('x', 20);
                 text.setAttribute('y', 12);
+                text.setAttribute('font-size', isSmallScreen ? '12px' : '14px');
                 text.textContent = item.label;
                 legendItem.appendChild(text);
 
