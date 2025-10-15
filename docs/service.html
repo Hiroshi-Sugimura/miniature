@@ -2,10 +2,10 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>IoTミニチュアハウス紹介サイト</title>
+<title>機器紹介 - IoTミニチュアハウス紹介サイト</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="ここにサイト説明を入れます">
-<link rel="stylesheet" href="css/style.css">
+<meta name="description" content="IoTミニチュアハウスの機器紹介">
+<link rel="stylesheet" href="css/style.css?v=10">
 </head>
 
 <body>
@@ -14,28 +14,26 @@
 
 <header>
 
-<!--<h1 id="logo"><a href="index.html"><img src="images/logo.png" alt="SAMPLE COMPANY"></a></h1>
-
 <!--メニュー-->
 <nav id="menubar">
-	<ul>
-	<li><a href="index.html">トップ</a></li>
-	<li><a href="gaiyou.html">IoTミニチュアハウスとは</a></li>
-	<li><a href="mokuteki.html">開発目的</a></li>
-	<li><a href="teian.html">教育提案</a></li>
-	<li><a href="tannkinou.html">Miniature Set</a>
-		<ul>
-	<li><a href="tannkinou.html">Miniature Set</a></li>
-	<li><a href="Development board installation instructions-Ver.0.02ax.pdf">Miniature Set Manual</a></li>
-	<li><a href="https://github.com/Hiroshi-Sugimura/EL-Firmwares-for-Miniature">Miniature Set Firmware</a></li>
-	<li><a href="Miniature Set Parts .pdf">Miniature Set追加パーツ</a></li>
-	</ul>
-	</li>
-	<li><a href="osirase.company.html">お知らせ、経緯など</a></li>
-	<li><a href="otoiawase.company.html">お問い合わせ</a></li>
-	<li><a href="subete.company.html">関連技術紹介</a></li>
-
-</ul>
+    <ul>
+    <li><a href="index.html">トップ</a></li>
+    <li><a href="gaiyou.html">IoTミニチュアハウスとは</a></li>
+    <li><a href="mokuteki.html">開発目的</a></li>
+    <li><a href="teian.html">教育提案</a></li>
+    <li class="ddmenu_parent">
+        <a href="tannkinou.html" class="ddmenu">Miniature Set</a>
+        <ul>
+            <li><a href="tannkinou.html">Miniature Set</a></li>
+            <li><a href="Development board installation instructions-Ver.0.02ax.pdf">Miniature Set Manual</a></li>
+            <li><a href="https://github.com/Hiroshi-Sugimura/EL-Firmwares-for-Miniature">Miniature Set Firmware</a></li>
+            <li><a href="Miniature Set Parts .pdf">Miniature Set追加パーツ</a></li>
+        </ul>
+    </li>
+    <li><a href="osirase.company.html">お知らせ、経緯など</a></li>
+    <li><a href="otoiawase.company.html">お問い合わせ</a></li>
+    <li><a href="subete.company.html">関連技術紹介</a></li>
+    </ul>
 </nav>
 
 <!--開閉ボタン（ハンバーガーアイコン）-->
@@ -53,110 +51,136 @@
 <p>IoTミニチュアハウスは8種類11個の機器が使用可能です<br>
 それぞれの機器を紹介させていただきます</p>
 
-<div class="list-container">
+<div class="device-grid">
 
-<div class="list blur">
-<figure><img src="images/画像1.jpg" alt=""></figure>
-<div class="text">
-<h4>スマートメーター</h4>
-<p>・電力量を測る機器</p>
-<p>・通信機能あり</p>
-<p>。リアルタイムで使用した電気量が通信で分かる</p>
-<p>・ミニチュアハウス内の機器に合わせて電力量変化</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m9xossBs1As?si=5oSdkqceXvvqY46K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="device-card">
+<figure class="device-image"><img src="images/meter.jpg" alt="スマートメーター"></figure>
+<div class="device-content">
+<h4 class="device-title">スマートメーター</h4>
+<ul class="device-features">
+<li>電力量を測る機器</li>
+<li>通信機能あり</li>
+<li>リアルタイムで使用した電気量が通信で分かる</li>
+<li>ミニチュアハウス内の機器に合わせて電力量変化</li>
+</ul>
+<div class="device-video">
+<iframe src="https://www.youtube.com/embed/m9xossBs1As?si=5oSdkqceXvvqY46K" title="スマートメーター動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
-</div>
-
-<div class="list blur">
-<figure><img src="images/103_20240912142845.png" alt=""></figure>
-<div class="text">
-<h4>鍵付き玄関扉</h4>
-<p>・電動で鍵を開閉</p>
-<p>・開閉センサ搭載</p>
-<p>・扉の開閉可能</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2OkwK0O0RDA?si=5Vy27a3vlSetWOwg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 </div>
 
-<div class="list blur">
-<figure><img src="images/walllight.jpg" alt=""></figure>
-<div class="text">
-<h4>壁照明</h4>
-<p>・調光照明</p>
-<p>・照明向き調整可能</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/fW1UaohevKg?si=x5nXNYK3btK6nfU1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="device-card">
+<figure class="device-image"><img src="images/103_20240912142845.png" alt="鍵付き玄関扉"></figure>
+<div class="device-content">
+<h4 class="device-title">鍵付き玄関扉</h4>
+<ul class="device-features">
+<li>電動で鍵を開閉</li>
+<li>開閉センサ搭載</li>
+<li>扉の開閉可能</li>
+</ul>
+<div class="device-video">
+<iframe src="https://www.youtube.com/embed/2OkwK0O0RDA?si=5Vy27a3vlSetWOwg" title="鍵付き玄関扉動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
-</div>
-
-<div class="list blur">
-<figure><img src="images/床暖房.jpg" alt=""></figure>
-<div class="text">
-<h4>床暖房</h4>
-<p>・床暖房運転中は床がオレンジ色に点灯</p>
-<p>・温度設定に合わせて明るさが変化する</p>
-<p>・左右がブロックで分かれており各ブロックごとに</p>
-<p>ON/OFF可能</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/alKjHSxHUcM?si=xh6BUJkxDd_E-ceG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 </div>
 
-<div class="list blur">
-<figure><img src="images/テレビ.jpg" alt=""></figure>
-<div class="text">
-<h4>テレビ</h4>
-<p>・電源と音量調整可能</p>
-<p>・MP4ファイルの自動再生機能あり</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/aQCvdsr9J3Y?si=SJaQH6Ae5kyHqaCj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="device-card">
+<figure class="device-image"><img src="images/walllight.jpg" alt="壁照明"></figure>
+<div class="device-content">
+<h4 class="device-title">壁照明</h4>
+<ul class="device-features">
+<li>調光照明</li>
+<li>照明向き調整可能</li>
+</ul>
+<div class="device-video">
+<iframe src="https://www.youtube.com/embed/fW1UaohevKg?si=x5nXNYK3btK6nfU1" title="壁照明動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
-</div>
-
-<div class="list blur">
-<figure><img src="images/IMG_0394.jpg" alt=""></figure>
-<div class="text">
-<h4>フロア照明</h4>
-<p>・フルカラー調色調光照明</p>
-<p>・RGB調光機能</p>
-<p>・照明モード機能</p>
-<p>調光機能</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/u_UDDYCHiNc?si=eQrlZ9AMMHiryHWn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 </div>
 
-<div class="list blur">
-<figure><img src="images/103_20240912143125.png" alt=""></figure>
-<div class="text">
-<h4>エアコン</h4>
-<p>・温度設定も可能</p>
-<p>・内部に温湿度センサーがありセンサーデバイスとしての教育活動も可能</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Oj2Gtzug4bU?si=LCY8I9abqMv8Uga8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="device-card">
+<figure class="device-image"><img src="images/床暖房.jpg" alt="床暖房"></figure>
+<div class="device-content">
+<h4 class="device-title">床暖房</h4>
+<ul class="device-features">
+<li>床暖房運転中は床がオレンジ色に点灯</li>
+<li>温度設定に合わせて明るさが変化する</li>
+<li>左右がブロックで分かれており各ブロックごとにON/OFF可能</li>
+</ul>
+<div class="device-video">
+<iframe src="https://www.youtube.com/embed/alKjHSxHUcM?si=xh6BUJkxDd_E-ceG" title="床暖房動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
 </div>
 </div>
 
-<div class="list blur">
-<figure><img src="images/103_20240912142517.png" alt=""></figure>
-<div class="text">
-<h4>電動窓</h4>
-<p>・電動で開閉する窓</p>
-<p>・指定した位置で止めることも可能</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/w7Nv_ucFrJI?si=r2-592M3JWzvT7M8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="device-card">
+<figure class="device-image"><img src="images/テレビ.jpg" alt="テレビ"></figure>
+<div class="device-content">
+<h4 class="device-title">テレビ</h4>
+<ul class="device-features">
+<li>電源と音量調整可能</li>
+<li>MP4ファイルの自動再生機能あり</li>
+</ul>
+<div class="device-video">
+<iframe src="https://www.youtube.com/embed/aQCvdsr9J3Y?si=SJaQH6Ae5kyHqaCj" title="テレビ動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 </div>
-	
-	
+</div>
+
+<div class="device-card">
+<figure class="device-image"><img src="images/IMG_0394.jpg" alt="フロア照明"></figure>
+<div class="device-content">
+<h4 class="device-title">フロア照明</h4>
+<ul class="device-features">
+<li>フルカラー調色調光照明</li>
+<li>RGB調光機能</li>
+<li>照明モード機能</li>
+<li>調光機能</li>
+</ul>
+<div class="device-video">
+<iframe src="https://www.youtube.com/embed/u_UDDYCHiNc?si=eQrlZ9AMMHiryHWn" title="フロア照明動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+
+<div class="device-card">
+<figure class="device-image"><img src="images/103_20240912143125.png" alt="エアコン"></figure>
+<div class="device-content">
+<h4 class="device-title">エアコン</h4>
+<ul class="device-features">
+<li>温度設定も可能</li>
+<li>内部に温湿度センサーがありセンサーデバイスとしての教育活動も可能</li>
+</ul>
+<div class="device-video">
+<iframe src="https://www.youtube.com/embed/Oj2Gtzug4bU?si=LCY8I9abqMv8Uga8" title="エアコン動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+
+<div class="device-card">
+<figure class="device-image"><img src="images/103_20240912142517.png" alt="電動窓"></figure>
+<div class="device-content">
+<h4 class="device-title">電動窓</h4>
+<ul class="device-features">
+<li>電動で開閉する窓</li>
+<li>指定した位置で止めることも可能</li>
+</ul>
+<div class="device-video">
+<iframe src="https://www.youtube.com/embed/w7Nv_ucFrJI?si=r2-592M3JWzvT7M8" title="電動窓動画" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+</div>
+</div>
+
+</div>
+<!--/.device-grid-->
+
+</section>
+
 </main>	
-	
-	
-	
-	
-	
-
-
-
 
 <footer>
-<small>Copyright&copy; <a href="index.html">SAMPLE COMPANY</a> All Rights Reserved.</small>
+<small>Copyright&copy; <a href="index.html">IoTミニチュアハウス紹介サイト</a> All Rights Reserved.</small>
 <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
-
 </footer>
 
 </div>
