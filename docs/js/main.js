@@ -127,12 +127,15 @@ $(function() {
 });
 
 
-//ドロップダウンメニューの処理
+//ドロップダウンメニューの処理（ネスト対応版）
 $(function(){
 
-    $('#menubar li:has(ul)').addClass('ddmenu_parent');
-    $('#mainmenu li:has(ul)').addClass('ddmenu_parent');
-    $('.ddmenu_parent > a').addClass('ddmenu');
+    // 既にHTMLでddmenu_parentクラスが付与されているため、この行は不要
+    // $('#menubar li:has(ul)').addClass('ddmenu_parent');
+    // $('#mainmenu li:has(ul)').addClass('ddmenu_parent');
+    
+    // ddmenuクラスも既にHTMLで付与されているため、この行も不要
+    // $('.ddmenu_parent > a').addClass('ddmenu');
 
         //小さな端末用（タッチデバイス・モバイル）
         $(document).on('click', '.s .ddmenu', function(e) {
@@ -142,25 +145,33 @@ $(function(){
             // 既に開いている場合は閉じる
             if(parent.hasClass('active')) {
                 parent.removeClass('active');
-                $(this).next('ul').slideUp();
+                parent.children('ul').slideUp();
             } else {
-                // 他のメニューを閉じる
-                $('.ddmenu_parent').removeClass('active');
-                $('.ddmenu_parent ul').slideUp();
+                // 同じ階層の他のメニューを閉じる（ネスト考慮）
+                parent.siblings('.ddmenu_parent').removeClass('active');
+                parent.siblings('.ddmenu_parent').children('ul').slideUp();
+                
                 // このメニューを開く
                 parent.addClass('active');
-                $(this).next('ul').slideDown();
+                parent.children('ul').slideDown();
             }
             return false;
         });
 
-        //PC用（900px以上）
+        //PC用（900px以上）- ホバーで表示
         $(document).on('mouseenter', '.p .ddmenu_parent', function() {
             $(this).children('ul').stop().slideDown(200);
         });
         
         $(document).on('mouseleave', '.p .ddmenu_parent', function() {
             $(this).children('ul').stop().slideUp(200);
+        });
+
+        // 外部リンクの場合はページ遷移を許可
+        $(document).on('click', '.ddmenu[href^="http"]', function(e) {
+            // 外部リンクの場合は新しいタブで開く
+            window.open($(this).attr('href'), '_blank');
+            return false;
         });
 
 });

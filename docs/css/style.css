@@ -211,29 +211,24 @@ header #logo img {
 }
 
 /* デフォルトで非表示 */
-#menubar .ddmenu_parent ul {
+#menubar .ddmenu_parent > ul {
     display: none;
 }
 
 /* 小さい画面用のドロップダウンメニュー */
-.s #menubar.db .ddmenu_parent ul {
+.s #menubar.db .ddmenu_parent > ul {
     width: 100%;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    display: none;
 }
 
-.s #menubar.db .ddmenu_parent.active > ul {
-    display: block;
-}
-
-.s #menubar.db .ddmenu_parent ul li {
+.s #menubar.db .ddmenu_parent > ul li {
     width: 100%;
     display: block;
 }
 
-.s #menubar.db .ddmenu_parent ul a {
+.s #menubar.db .ddmenu_parent > ul > li > a {
     background: rgba(0, 0, 0, 0.8);
     padding: 15px 20px;
     width: 100%;
@@ -245,9 +240,16 @@ header #logo img {
     display: block;
 }
 
+/* ネストされたドロップダウン（第2階層）スマホ用 */
+.s #menubar.db .ddmenu_parent .ddmenu_parent > ul > li > a {
+    background: rgba(0, 0, 0, 0.9);
+    padding-left: 40px;
+    font-size: 0.9em;
+}
+
 a.ddmenu::before {
     font-family: "Font Awesome 5 Free";
-    content: "\f103";
+    content: "\f107";
     font-weight: bold;
     margin-right: 0.5em;
 }
@@ -256,49 +258,71 @@ a.ddmenu {
     cursor: pointer;
 }
 
-/*３本バー（ハンバーガー）アイコン設定
----------------------------------------------------------------------------*/
-#menubar_hdr.db {display: flex;}
-#menubar_hdr.dn {display: none;}
+/* PC用のドロップダウンメニュー */
+@media screen and (min-width:900px) {
+    
+    .p #menubar .ddmenu_parent > ul {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #2c3e50;
+        min-width: 280px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        z-index: 999;
+        padding: 0;
+        margin: 0;
+        height: auto;
+        display: none;
+    }
 
-#menubar_hdr {
-    position: fixed;
-    z-index: 101;
-    cursor: pointer;
-    right: 3%;
-    top: 14px;
-    padding: 16px 14px;
-    width: 52px;
-    height: 52px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    order: 0;
-    background: rgba(44, 62, 80, 0.9);
-}
+    .p #menubar .ddmenu_parent > ul li {
+        display: block;
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
 
-#menubar_hdr span {
-    display: block;
-    transition: 0.3s;
-    border-top: 2px solid #fff;
-}
+    .p #menubar .ddmenu_parent > ul a {
+        padding: 15px 20px;
+        background: #34495e;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.85em;
+        white-space: normal;
+        word-wrap: break-word;
+        text-align: left;
+        width: 100%;
+        box-sizing: border-box;
+        display: block;
+        height: auto;
+        color: #ffffff;
+    }
 
-#menubar_hdr.ham span:nth-of-type(1),
-#menubar_hdr.ham span:nth-of-type(3) {
-    transform-origin: center center;
-    width: 26px;
-}
+    .p #menubar .ddmenu_parent > ul a:hover {
+        background: #2c3e50;
+    }
 
-#menubar_hdr.ham span:nth-of-type(1) {
-    transform: rotate(45deg) translate(6px, 7px);
-}
+    /* ネストされたドロップダウン（第2階層）PC用 */
+    .p #menubar .ddmenu_parent .ddmenu_parent > ul {
+        top: 0;
+        left: 100%;
+        transform: none;
+        margin-left: 0;
+    }
 
-#menubar_hdr.ham span:nth-of-type(3) {
-    transform: rotate(-45deg) translate(6px, -7px);
-}
+    .p #menubar .ddmenu_parent .ddmenu_parent > ul a {
+        background: #2c3e50;
+        padding-left: 20px;
+    }
 
-#menubar_hdr.ham span:nth-of-type(2) {
-    display: none;
+    .p #menubar .ddmenu_parent .ddmenu_parent > ul a:hover {
+        background: #34495e;
+    }
+
+    /* ホバー時に表示されるように設定 */
+    .p #menubar .ddmenu_parent:hover > ul {
+        display: block !important;
+    }
 }
 
 /*mainブロック設定
@@ -1179,190 +1203,29 @@ p.btn {
         background: #2c3e50;
     }
 
-    #menubar_hdr {
-        display: none;
-    }
-
-    #new dt {
-        width: 14em;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    #new dt span {
-        display: inline-block;
-        width: 6em;
-        background: #999;
-        color: #fff;
-        font-size: 0.8em;
-        text-align: center;
-        margin-right: 1em;
-        align-self: flex-start;
-        line-height: 1.8;
-        position: relative;
-        top: 0.4em;
-    }
-
-    #new dt span.icon-bg1 {
-        background: #2c3e50;
-    }
-
-    #new dd {
-        width: calc(100% - 14em);
-    }
-
-    .list-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        background-color: transparent;
-        padding: 20px 5%;
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-
-    .list {
-        flex-direction: column;
-        width: 31%;
+    /* ネストされたドロップダウン（第2階層）PC用 */
+    #menubar .ddmenu_parent .ddmenu_parent > ul {
+        top: 0;
+        left: 100%;
+        transform: none;
         margin-left: 0;
-        margin-right: 0;
     }
 
-    .list figure {
-        width: 100%;
-        margin-right: 0;
+    #menubar .ddmenu_parent .ddmenu_parent ul a {
+        background: #2c3e50;
+        padding-left: 20px;
     }
 
-    .list .text {
-        margin-right: 0;
+    #menubar .ddmenu_parent .ddmenu_parent ul a:hover {
+        background: #34495e;
     }
 
-    .list h4 {
-        margin: 10px 0 15px 0;
-        font-size: 1.4em;
+    /* ホバー時に第2階層を表示 */
+    #menubar .ddmenu_parent:hover > ul {
+        display: block;
     }
 
-    .lis-slide {
-        padding: 20px 5%;
+    #menubar .ddmenu_parent .ddmenu_parent:hover > ul {
+        display: block;
     }
-
-}
-
-/*---------------------------------------------------------------------------
-スマホ・タブレット用の追加指定
----------------------------------------------------------------------------*/
-@media screen and (max-width: 768px) {
-
-    header {
-        position: relative;
-    }
-
-    #menubar_hdr {
-        top: 14px;
-    }
-
-    section,
-    main > article {
-        padding: 5% 3%;
-    }
-
-    section.bg3 {
-        padding: 40px 3%;
-    }
-
-    section.bg1 {
-        padding: 30px 3%;
-        margin: 30px 0;
-    }
-
-    .bg3 {
-        padding: 40px 3%;
-    }
-
-    .bg1 {
-        padding: 30px 3%;
-        margin: 30px 0;
-    }
-
-    main p {
-        padding: 0 10px;
-    }
-
-    section.bg1 > p,
-    section.bg3 > p {
-        padding: 0 10px;
-    }
-
-    p.btn {
-        padding: 0 10px;
-    }
-
-    .top-section {
-        margin-top: 0;
-    }
-
-    main h2 {
-        font-size: 1.6em;
-    }
-
-    .list {
-        padding: 20px;
-        margin-left: 3%;
-        margin-right: 3%;
-    }
-
-    .lis-slide {
-        padding: 20px 3%;
-    }
-
-    footer {
-        margin-top: 40px;
-    }
-
-}
-
-@media screen and (min-width: 769px) and (max-width: 899px) {
-
-    header {
-        position: relative;
-    }
-
-    #menubar_hdr {
-        top: 14px;
-    }
-
-    .top-section {
-        margin-top: 0;
-    }
-
-    section,
-    main > article {
-        padding: 3% 4%;
-    }
-
-    section.bg3 {
-        padding: 50px 4%;
-    }
-
-    section.bg1 {
-        padding: 35px 4%;
-    }
-
-    .bg3 {
-        padding: 50px 4%;
-    }
-
-    .bg1 {
-        padding: 35px 4%;
-    }
-
-    .list {
-        margin-left: 4%;
-        margin-right: 4%;
-    }
-
-    .lis-slide {
-        padding: 20px 4%;
-    }
-
 }
