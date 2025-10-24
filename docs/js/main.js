@@ -22,11 +22,11 @@ $(window).on("load resize", function() {
             if(winW < winBP) {
                 $('body').addClass('s').removeClass('p');
                 $('#menubar').addClass('dn').removeClass('db');
-                $('#menubar_hdr').addClass('db').removeClass('dn').removeClass('ham');
+                $('#menubar_hdr').addClass('db').removeClass('dn');
                 
                     // 同一ページへのリンクの場合に開閉メニューを閉じる処理
-                    $('#menubar a[href^="#"]').click(function() {
-                        $('#menubar').removeClass('db');
+                    $('#menubar a[href^="#"]').off('click').on('click', function() {
+                        $('#menubar').removeClass('db').addClass('dn');
                         $('#menubar_hdr').removeClass('ham');
                         $('.ddmenu_parent').removeClass('active');
                     });
@@ -35,7 +35,7 @@ $(window).on("load resize", function() {
             } else {
                 $('body').addClass('p').removeClass('s');
                 $('#menubar').addClass('db').removeClass('dn');
-                $('#menubar_hdr').removeClass('db').addClass('dn');
+                $('#menubar_hdr').addClass('dn').removeClass('db');
                 $('.ddmenu_parent').removeClass('active');
             }
 
@@ -45,7 +45,7 @@ $(window).on("load resize", function() {
 
 //ハンバーガーメニューをクリックした際の処理
 $(function() {
-    $('#menubar_hdr').click(function() {
+    $('#menubar_hdr').off('click').on('click', function() {
         $(this).toggleClass('ham');
 
             if($(this).hasClass('ham')) {
@@ -54,6 +54,7 @@ $(function() {
                 $('#menubar').addClass('dn').removeClass('db');
                 // メニューを閉じるときにドロップダウンも閉じる
                 $('.ddmenu_parent').removeClass('active');
+                $('.ddmenu_parent > ul').slideUp();
             }
 
     });

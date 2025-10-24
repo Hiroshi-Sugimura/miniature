@@ -1229,3 +1229,174 @@ p.btn {
         display: block;
     }
 }
+
+/*ハンバーガーメニュー
+---------------------------------------------------------------------------*/
+#menubar_hdr {
+    display: none;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 99999;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* スマホ表示時に表示 */
+.s #menubar_hdr.db {
+    display: block !important;
+}
+
+#menubar_hdr span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #ffffff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.3s;
+}
+
+#menubar_hdr span:nth-of-type(1) {
+    top: 12px;
+}
+
+#menubar_hdr span:nth-of-type(2) {
+    top: 23px;
+}
+
+#menubar_hdr span:nth-of-type(3) {
+    top: 34px;
+}
+
+/* ハンバーガーメニューが開いた時（hamクラス）のスタイル */
+#menubar_hdr.ham span:nth-of-type(1) {
+    top: 23px;
+    transform: translateX(-50%) rotate(-45deg);
+}
+
+#menubar_hdr.ham span:nth-of-type(2) {
+    opacity: 0;
+}
+
+#menubar_hdr.ham span:nth-of-type(3) {
+    top: 23px;
+    transform: translateX(-50%) rotate(45deg);
+}
+
+/*メニュー
+---------------------------------------------------------------------------*/
+#menubar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    overflow-y: auto;
+    padding: 80px 20px 40px;
+    box-sizing: border-box;
+}
+
+/* PC表示時 */
+.p #menubar {
+    position: static;
+    width: 100%;
+    height: auto;
+    background: #2c3e50;
+    padding: 0;
+    overflow-y: visible;
+}
+
+/* スマホで非表示の場合 */
+#menubar.dn {
+    display: none;
+}
+
+/* スマホで表示の場合 */
+.s #menubar.db {
+    display: block !important;
+}
+
+/* PC表示時は常に表示 */
+.p #menubar.db {
+    display: block !important;
+}
+
+#menubar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* スマホ用のメニュースタイル */
+.s #menubar ul li {
+    display: block;
+    width: 100%;
+}
+
+.s #menubar ul li a {
+    display: block;
+    padding: 20px;
+    color: #ffffff;
+    font-size: 1.1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.s #menubar ul li a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* PC用のメニュースタイル */
+@media screen and (min-width:900px) {
+    
+    #menubar_hdr {
+        display: none !important;
+    }
+    
+    #menubar {
+        display: block !important;
+    }
+    
+    #menubar ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    #menubar ul li {
+        position: relative;
+    }
+    
+    #menubar ul li a {
+        display: block;
+        padding: 20px 15px;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 0.9em;
+        white-space: nowrap;
+        transition: 0.3s;
+    }
+    
+    #menubar ul li a:hover {
+        background: #34495e;
+    }
+}
+
+/* 小さな画面サイズの調整 */
+@media screen and (max-width: 599px) {
+    .s #menubar ul li a {
+        padding: 15px;
+        font-size: 1em;
+    }
+}
